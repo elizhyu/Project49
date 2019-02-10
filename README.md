@@ -2,6 +2,8 @@
 
 This is the read me file
 
+git clone https://github.com/jpats523/Project49.git
+
 There is a scripts folder - this is the installer that you run first once you pull down from github
 The installations include
 -main update/updgrade
