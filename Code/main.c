@@ -38,7 +38,7 @@ int main(void)
 			wifi_found = NetworkIndicator();
 			counter = 0;
 			Networkcounter ++;
-			printf("%d\n",Networkcounter );
+			//printf("%d\n",Networkcounter );
 
 			if (wifi_found)
 				wifi_check_freq = 25000;
