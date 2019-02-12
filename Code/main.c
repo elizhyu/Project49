@@ -12,8 +12,8 @@ bool wifi_found = false; //flag for checking network activity
 #include "Init.h"	//the intialize GPIO 
 #include "RecordStream.h"	//the recording functions and sets up the interrupts for the pushbuttons
 #include "NetworkChecker.h"
-#include "bq27xxx_battery.c"
-#include "bq27xxx_battery_i2c.c"
+//#include "bq27xxx_battery.c"
+//#include "bq27xxx_battery_i2c.c"
 
 int main(void)
 {
