@@ -4,8 +4,6 @@
 #include "RecordStream.h"
 #include "Init.h"
 
-wiringPiSetup();	//I don't know if this is redudant, but it needs to be ran before we can use WiringPi
-
 bool is_recording(void)
 
 
