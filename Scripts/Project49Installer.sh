@@ -14,3 +14,7 @@ echo "Installing picam"
 chmod +x piCamInstaller.sh
 ./piCamInstaller.sh
 
+cd
+cd Project49
+cd Code
+make -B
