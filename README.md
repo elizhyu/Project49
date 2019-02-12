@@ -15,3 +15,5 @@ There is a programming folder that will hold all of the C programming that is ne
 I also want to have a script (to be developed) that will set up the autorunning of the program
 -needs to compile the C program
 -adds the file to the area so it runs on boot
+
+There are so problems with the files being kinda created but not really?
