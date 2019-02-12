@@ -34,3 +34,9 @@ chmod +x make_dirs.sh
 wget https://github.com/iizukanao/picam/releases/download/v1.4.7/picam-1.4.7-binary.tar.xz
 tar xvf picam-1.4.7-binary.tar.xz
 cp picam-1.4.7-binary/picam ~/picam/
+
+cd
+cd picam
+rm state
+rm hooks
+rm state
