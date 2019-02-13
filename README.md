@@ -12,8 +12,7 @@ The installations include
 
 There is a programming folder that will hold all of the C programming that is needed to run the program
 
-I also want to have a script (to be developed) that will set up the autorunning of the program
--needs to compile the C program
--adds the file to the area so it runs on boot
+How to use the testing script program: chmod+x TestScript.sh
+#./TestScript.sh 10 will run the recording for 10 seconds 
+#It will always loop for 10 times - that's what our test plan says
 
-There are so problems with the files being kinda created but not really?
