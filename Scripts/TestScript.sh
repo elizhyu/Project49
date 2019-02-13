@@ -8,7 +8,7 @@ cd
 cd Project49
 cd Code
 make -B
-#./main
+./main
 
 declare -i time_left
 declare -i loop_left
