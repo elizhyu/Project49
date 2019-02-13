@@ -1,6 +1,6 @@
 # Project49
 
-This is the read me file
+Purdue Senior Design - Wearable headset
 
 git clone https://github.com/jpats523/Project49.git
 
