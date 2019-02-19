@@ -1,0 +1,11 @@
+D:\Visual Studio Projects\PiCamClient\PiCamClient\bin\Release\PiCamClient.exe.config
+D:\Visual Studio Projects\PiCamClient\PiCamClient\bin\Release\PiCamClient.exe
+D:\Visual Studio Projects\PiCamClient\PiCamClient\bin\Release\PiCamClient.pdb
+D:\Visual Studio Projects\PiCamClient\PiCamClient\bin\Release\Tamir.SharpSsh.dll
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.Main.resources
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.Properties.Resources.resources
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.csproj.GenerateResource.cache
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.csproj.CoreCompileInputs.cache
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.csproj.CopyComplete
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.exe
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.pdb
