@@ -33,8 +33,8 @@ namespace PiCamClient
             SshHostKeyFingerprint = "ssh-ed25519 256 b6:89:da:69:bb:96:7c:e7:12:83:7e:79:f8:96:2c:ba"//"ssh-ed25519 256 b0:2c:21:d8:bd:e4:c8:c3:9d:b9:2a:a4:90:06:c5:8a"
         }; 
 
-         // Transfer Progress List Groups
-         ListViewGroup Initiation_Group = new ListViewGroup("Live Monitor");
+        // Transfer Progress List Groups
+        ListViewGroup Initiation_Group = new ListViewGroup("Live Monitor");
         ListViewGroup Transfer_Group = new ListViewGroup("File Transfer");
 
         string[] File_List;
@@ -42,6 +42,8 @@ namespace PiCamClient
 
         // Winscp Result Declaration
         CommandExecutionResult execute_result;
+        TransferOptions sftp_option = new TransferOptions();
+        TransferOperationResult sftp_result;
 
         // Background Stop Flag
         bool status_check_stop_flag = false;
@@ -119,6 +121,7 @@ namespace PiCamClient
             Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "File Tranfer Stream", "Stopped" }, Initiation_Group));
             Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
 
+            sftp_option.TransferMode = TransferMode.Binary;
             //MessageBox.Show(PiCamClient.Properties.Resources.ResourceManager.GetString("xx"));
         }
 
@@ -215,9 +218,7 @@ namespace PiCamClient
                                 // Will continuously report progress of transfer
                                 ssh_session.FileTransferProgress += SessionFileTransferProgress;
                                 // Transfer Files
-                                TransferOptions sftp_option = new TransferOptions();
-                                sftp_option.TransferMode = TransferMode.Binary;
-                                TransferOperationResult sftp_result;
+                                
                                 //sftp_result = ssh_session.PutFiles(@"D:\Downloads\Bla Bla Bla\Pokemon\*", "/home/pi/Pictures/", false, sftp_option);
                                 sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"D:\Project49\", false, sftp_option);
                                 transfer_status = false;
