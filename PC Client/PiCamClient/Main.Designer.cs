@@ -39,12 +39,13 @@
             this.Player_1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.Button_Test = new System.Windows.Forms.Button();
             this.Button_Disconnect = new System.Windows.Forms.Button();
+            this.Button_Setting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Player_1)).BeginInit();
             this.SuspendLayout();
             // 
             // Button_Transfer
             // 
-            this.Button_Transfer.Location = new System.Drawing.Point(659, 39);
+            this.Button_Transfer.Location = new System.Drawing.Point(578, 39);
             this.Button_Transfer.Name = "Button_Transfer";
             this.Button_Transfer.Size = new System.Drawing.Size(75, 23);
             this.Button_Transfer.TabIndex = 1;
@@ -91,7 +92,7 @@
             // 
             // Button_Record
             // 
-            this.Button_Record.Location = new System.Drawing.Point(578, 39);
+            this.Button_Record.Location = new System.Drawing.Point(498, 40);
             this.Button_Record.Name = "Button_Record";
             this.Button_Record.Size = new System.Drawing.Size(74, 22);
             this.Button_Record.TabIndex = 10;
@@ -112,7 +113,7 @@
             // 
             // Button_Test
             // 
-            this.Button_Test.Location = new System.Drawing.Point(498, 39);
+            this.Button_Test.Location = new System.Drawing.Point(418, 39);
             this.Button_Test.Name = "Button_Test";
             this.Button_Test.Size = new System.Drawing.Size(74, 22);
             this.Button_Test.TabIndex = 11;
@@ -131,11 +132,22 @@
             this.Button_Disconnect.UseVisualStyleBackColor = true;
             this.Button_Disconnect.Click += new System.EventHandler(this.Button_Disconnect_Click);
             // 
+            // Button_Setting
+            // 
+            this.Button_Setting.Location = new System.Drawing.Point(659, 40);
+            this.Button_Setting.Name = "Button_Setting";
+            this.Button_Setting.Size = new System.Drawing.Size(75, 23);
+            this.Button_Setting.TabIndex = 13;
+            this.Button_Setting.Text = "Setting";
+            this.Button_Setting.UseVisualStyleBackColor = true;
+            this.Button_Setting.Click += new System.EventHandler(this.Button_Setting_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 450);
+            this.Controls.Add(this.Button_Setting);
             this.Controls.Add(this.Button_Disconnect);
             this.Controls.Add(this.Button_Test);
             this.Controls.Add(this.Button_Record);
@@ -163,6 +175,7 @@
         private System.Windows.Forms.Button Button_Record;
         private System.Windows.Forms.Button Button_Test;
         private System.Windows.Forms.Button Button_Disconnect;
+        private System.Windows.Forms.Button Button_Setting;
     }
 }
 

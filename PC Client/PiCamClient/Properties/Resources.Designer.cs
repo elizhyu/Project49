@@ -59,14 +59,5 @@ namespace PiCamClient.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to yy.
-        /// </summary>
-        internal static string xx {
-            get {
-                return ResourceManager.GetString("xx", resourceCulture);
-            }
-        }
     }
 }

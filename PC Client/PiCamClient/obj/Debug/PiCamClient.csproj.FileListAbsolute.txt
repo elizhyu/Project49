@@ -55,3 +55,4 @@ D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.csproj.CoreCompi
 D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.csproj.CopyComplete
 D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.exe
 D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.pdb
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.Settings.resources

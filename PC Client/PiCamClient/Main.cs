@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Resources;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinSCP;
 using WMPLib;
-using System.Resources;
+
 using PiCamClient.Properties;
 
 namespace PiCamClient
@@ -123,19 +125,16 @@ namespace PiCamClient
             Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
 
             sftp_option.TransferMode = TransferMode.Binary;
-            // MessageBox.Show(PiCamClient.Properties.Resources.ResourceManager.GetString("test"));
-            //using (ResourceWriter writer = new ResourceWriter("settings.resx"))
-            //{
-            //    writer.AddResource("mm", "nn");
-            //    writer.Generate();
-            //    writer.Close();
-            //}
-
-            //ResourceManager manager = new ResourceManager("settings", typeof(Main).Assembly);
-            //MessageBox.Show(manager.GetString("mm"));
-                
             
-            //MessageBox.Show(PiCamClient.Properties.Resources.ResourceManager.GetString("mm"));
+            //StreamWriter writer = new StreamWriter(@"config.txt");
+            //writer.WriteLine("----");
+            //writer.WriteLine("Name: Eli_HA");
+            //writer.WriteLine("HostName: 172.16.0.183");
+            //writer.WriteLine("UserName: root");
+            //writer.WriteLine("Password: yu111333");
+            //writer.WriteLine("SshHostKeyFingerprint: ssh-ed25519 256 40:b0:cb:19:3a:fc:b7:98:cd:b2:a3:58:2a:b3:ae:8c");
+            //writer.WriteLine("----");
+            //writer.Close();
         }
 
         private void Main_Shown(object sender, EventArgs e)
@@ -348,5 +347,10 @@ namespace PiCamClient
             //Button_Test.Enabled = false;
         }
 
+        private void Button_Setting_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
+        }
     }
 }
