@@ -38,13 +38,11 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -109,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PiCam_LOGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\WinSCP.5.14.4-rc\build\WinSCP.targets" Condition="Exists('..\packages\WinSCP.5.14.4-rc\build\WinSCP.targets')" />

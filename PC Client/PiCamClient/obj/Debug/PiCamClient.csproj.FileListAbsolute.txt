@@ -37,3 +37,21 @@ D:\Google Drive\Courses\Senior Capstone\PiCamClient\PiCamClient\bin\Debug\WinSCP
 D:\Google Drive\Courses\Senior Capstone\PiCamClient\PiCamClient\bin\Debug\Interop.WMPLib.dll
 D:\Google Drive\Courses\Senior Capstone\PiCamClient\PiCamClient\bin\Debug\AxInterop.WMPLib.dll
 D:\Google Drive\Courses\Senior Capstone\PiCamClient\PiCamClient\obj\Debug\PiCamClient.csproj.CopyComplete
+D:\Github\Project49\PC Client\PiCamClient\bin\Debug\WinSCP.exe
+D:\Github\Project49\PC Client\PiCamClient\bin\Debug\PiCamClient.exe.config
+D:\Github\Project49\PC Client\PiCamClient\bin\Debug\PiCamClient.exe
+D:\Github\Project49\PC Client\PiCamClient\bin\Debug\PiCamClient.pdb
+D:\Github\Project49\PC Client\PiCamClient\bin\Debug\WinSCPnet.dll
+D:\Github\Project49\PC Client\PiCamClient\bin\Debug\Interop.WMPLib.dll
+D:\Github\Project49\PC Client\PiCamClient\bin\Debug\AxInterop.WMPLib.dll
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.csprojAssemblyReference.cache
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\Interop.WMPLib.dll
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\AxInterop.WMPLib.dll
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.csproj.ResolveComReference.cache
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.Main.resources
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.Properties.Resources.resources
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.csproj.GenerateResource.cache
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.csproj.CoreCompileInputs.cache
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.csproj.CopyComplete
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.exe
+D:\Github\Project49\PC Client\PiCamClient\obj\Debug\PiCamClient.pdb

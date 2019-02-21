@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using WinSCP;
 using WMPLib;
 using System.Resources;
+using PiCamClient.Properties;
 
 namespace PiCamClient
 {
@@ -23,7 +24,7 @@ namespace PiCamClient
             Password = "yu111333",
             SshHostKeyFingerprint = "ssh-ed25519 256 40:b0:cb:19:3a:fc:b7:98:cd:b2:a3:58:2a:b3:ae:8c"
         };
-
+        
         SessionOptions PiCam_1 = new SessionOptions
         {
             Protocol = Protocol.Sftp,
@@ -122,7 +123,19 @@ namespace PiCamClient
             Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
 
             sftp_option.TransferMode = TransferMode.Binary;
-            //MessageBox.Show(PiCamClient.Properties.Resources.ResourceManager.GetString("xx"));
+            // MessageBox.Show(PiCamClient.Properties.Resources.ResourceManager.GetString("test"));
+            //using (ResourceWriter writer = new ResourceWriter("settings.resx"))
+            //{
+            //    writer.AddResource("mm", "nn");
+            //    writer.Generate();
+            //    writer.Close();
+            //}
+
+            //ResourceManager manager = new ResourceManager("settings", typeof(Main).Assembly);
+            //MessageBox.Show(manager.GetString("mm"));
+                
+            
+            //MessageBox.Show(PiCamClient.Properties.Resources.ResourceManager.GetString("mm"));
         }
 
         private void Main_Shown(object sender, EventArgs e)
