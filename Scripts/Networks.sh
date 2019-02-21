@@ -10,8 +10,8 @@ update_config=1
 country=US
 
 network={
-	ssid=""
-	psk=""
+	ssid="where_is_davin"
+	psk="not_here"
 	key_mgmt=WPA-PSK
 }
 
