@@ -18,6 +18,9 @@ namespace PiCamClient
 {
     public partial class Main : Form
     {
+
+        public SessionOptions[] device_list { get; set; }
+
         SessionOptions Eli_HA = new SessionOptions
         {
             Protocol = Protocol.Sftp,
@@ -125,16 +128,6 @@ namespace PiCamClient
             Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
 
             sftp_option.TransferMode = TransferMode.Binary;
-            
-            //StreamWriter writer = new StreamWriter(@"config.txt");
-            //writer.WriteLine("----");
-            //writer.WriteLine("Name: Eli_HA");
-            //writer.WriteLine("HostName: 172.16.0.183");
-            //writer.WriteLine("UserName: root");
-            //writer.WriteLine("Password: yu111333");
-            //writer.WriteLine("SshHostKeyFingerprint: ssh-ed25519 256 40:b0:cb:19:3a:fc:b7:98:cd:b2:a3:58:2a:b3:ae:8c");
-            //writer.WriteLine("----");
-            //writer.Close();
         }
 
         private void Main_Shown(object sender, EventArgs e)
