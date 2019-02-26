@@ -18,38 +18,22 @@ namespace PiCamClient
 {
     public partial class Main : Form
     {
-
-        public SessionOptions[] device_list { get; set; }
-
-        SessionOptions Eli_HA = new SessionOptions
-        {
-            Protocol = Protocol.Sftp,
-            HostName = "172.16.0.183",
-            UserName = "root",
-            Password = "yu111333",
-            SshHostKeyFingerprint = "ssh-ed25519 256 40:b0:cb:19:3a:fc:b7:98:cd:b2:a3:58:2a:b3:ae:8c"
-        };
-        
-        SessionOptions PiCam_1 = new SessionOptions
-        {
-            Protocol = Protocol.Sftp,
-            HostName = "192.168.1.11",
-            UserName = "pi",
-            Password = "raspberry",
-            SshHostKeyFingerprint = "ssh-ed25519 256 b6:89:da:69:bb:96:7c:e7:12:83:7e:79:f8:96:2c:ba"//"ssh-ed25519 256 b0:2c:21:d8:bd:e4:c8:c3:9d:b9:2a:a4:90:06:c5:8a"
-        }; 
+        const int Device_Count = 10;
+        public SessionOptions[] device_list = new SessionOptions[Device_Count];
+        //"ssh-ed25519 256 b0:2c:21:d8:bd:e4:c8:c3:9d:b9:2a:a4:90:06:c5:8a"
 
         // Transfer Progress List Groups
         ListViewGroup Initiation_Group = new ListViewGroup("Live Monitor");
         ListViewGroup Transfer_Group = new ListViewGroup("File Transfer");
 
-        string[] File_List;
+        string[] File_List = new string[50];
         bool file_list_state = false;
 
         // Winscp Result Declaration
         CommandExecutionResult execute_result;
         TransferOptions sftp_option = new TransferOptions();
         TransferOperationResult sftp_result;
+        Session ssh_session = new Session();
 
         // Background Stop Flag
         bool status_check_stop_flag = false;
@@ -128,6 +112,9 @@ namespace PiCamClient
             Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
 
             sftp_option.TransferMode = TransferMode.Binary;
+
+            // Will continuously report progress of transfer
+            //ssh_session.FileTransferProgress += SessionFileTransferProgress;
         }
 
         private void Main_Shown(object sender, EventArgs e)
@@ -135,11 +122,7 @@ namespace PiCamClient
             //Player_1.URL = @"D:\Project49\PiCam_LOGO.png";
             //Player_1.URL = PiCamClient.Properties.Resources.PiCam_LOGO.png;
             Player_1.Ctlcontrols.pause();
-        }
-
-        private void Player_1_Enter(object sender, EventArgs e)
-        {
-            
+            Device_List_Refresh_Timer.Enabled = true;
         }
 
         private async void Button_Connect_Click(object sender, EventArgs e)
@@ -164,103 +147,95 @@ namespace PiCamClient
             //Stuff Happens
             try
             {
-                using (Session ssh_session = new Session())
+                // ====================================================================================================================
+                // Select and Establish Connection
+                ssh_session.Open(device_list[PiCam_Selection]);
+
+                status = "on";
+
+                while (status_check_stop_flag == false)
                 {
-                    // ====================================================================================================================
-                    // Select and Establish Connection
-                    switch (PiCam_Selection)
+                    switch(action)
                     {
-                        case 0:
-                            ssh_session.Open(Eli_HA);
-                            break;
-                        case 1:
-                            ssh_session.Open(PiCam_1);
-                            break;
-                        //case -1:
-                            //return;
-                    }
-
-                    status = "on";
-
-                    while (status_check_stop_flag == false)
-                    {
-                        switch(action)
-                        {
-                            // ====================================================================================================================
-                            // Transfer Recording
-                            case "transfer":
-                                transfer_status = true;
-                                // Read 
-                                /*
-                                RemoteDirectoryInfo directory = ssh_session.ListDirectory("/home/pi/picam/rec/");
-                                
-                                foreach (RemoteFileInfo FileInfo in directory.Files)
-                                {
-                                    uint file_count = 0;
-                                    // Grab file name
-                                    string[] filename_array = FileInfo.Name.Split('.');
-
-                                    // File Type Matching
-                                    if (filename_array[filename_array.Length - 1].ToLower() == "ts") // change to TS for PiCam!!!!!!!!!
-                                    {
-                                        int i = 0;
-                                        string[] Byte_Units = { " B", " KB", " MB", " GB", "TB" };
-                                        long FileSize = FileInfo.Length;
-                                        while (FileSize >= 1024)
-                                        {
-                                            FileSize = FileSize / 1024;
-                                            i++;
-                                        }
-                                        string filename = FileInfo.Name + "(" + FileSize + Byte_Units[i] + ")";
-                                        //Add_File(filename);
-                                        File_List[file_count] = filename;
-                                        file_count++;
-                                    }
-                                }
-                                file_list_state = true;
-                                while (file_list_state) ;*/
-
-                                // Will continuously report progress of transfer
-                                ssh_session.FileTransferProgress += SessionFileTransferProgress;
-                                // Transfer Files
-                                
-                                //sftp_result = ssh_session.PutFiles(@"D:\Downloads\Bla Bla Bla\Pokemon\*", "/home/pi/Pictures/", false, sftp_option);
-                                sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"D:\Project49\", false, sftp_option);
-                                transfer_status = false;
-                                //sftp_result.Check();
-
-                                MessageBox.Show("Transfer Done", "Notification", MessageBoxButtons.OK);
-                                action = "none";
-                                break;
-                            case "record":
-                                execute_result = ssh_session.ExecuteCommand("sudo touch ~/picam/hooks/start_record");
-                                action = "none";
-                                break;
-                            case "stop":
-                                execute_result = ssh_session.ExecuteCommand("sudo touch ~/picam/hooks/stop_record");
-                                action = "none";
-                                break;
-                            case "test":
-                                //execute_result = ssh_session.ExecuteCommand("sudo rm -rf /home/pi/picam/rec");
-                                //execute_result = ssh_session.ExecuteCommand("sudo chmod +x /home/pi/Project49/Scripts/TestScript.sh");
-                                execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
-                                MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
-                                action = "none";
-                                //Button_Test.Enabled = true;
-                                break;
-                            // ====================================================================================================================
-                            case "none":
-                                break;
-                        }
-
                         // ====================================================================================================================
-                        // Check Recording Status
-                        execute_result = ssh_session.ExecuteCommand("sudo cat ~/picam/state/record");
-                        if (execute_result.Output == "false") recording_status = false;
-                        else if (execute_result.Output == "true") recording_status = true;
+                        // Transfer Recording
+                        case "transfer":
+                            transfer_status = true;
+                            // Read 
+                                
+                            RemoteDirectoryInfo directory = ssh_session.ListDirectory("/home/pi/picam/rec/");
+                            foreach(string thestring in File_List)
+                            {
+                                //thestring.
+                                // clear array with for instead!!!!!!!!!!!!!!!!!!!
+                            }
+                            int file_count = 0;
+                            foreach (RemoteFileInfo FileInfo in directory.Files)
+                            {
+                                // Grab file name
+                                string[] filename_array = FileInfo.Name.Split('.');
+
+                                // File Type Matching
+                                if (filename_array[filename_array.Length - 1].ToLower() == "ts") // change to TS for PiCam!!!!!!!!!
+                                {
+                                    int i = 0;
+                                    string[] Byte_Units = { " B", " KB", " MB", " GB", "TB" };
+                                    long FileSize = FileInfo.Length;
+                                    while (FileSize >= 1024)
+                                    {
+                                        FileSize = FileSize / 1024;
+                                        i++;
+                                    }
+                                    string filename = FileInfo.Name + "(" + FileSize + Byte_Units[i] + ")";
+                                    //File_List[file_count] = new string;
+                                    File_List[file_count] = filename;
+                                    file_count++;
+                                }
+                            }
+                            file_list_state = true;
+                            while (file_list_state) ;
+
+                                
+                            // Transfer Files
+                                
+                            //sftp_result = ssh_session.PutFiles(@"D:\Downloads\Bla Bla Bla\Pokemon\*", "/home/pi/Pictures/", false, sftp_option);
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"D:\Project49\", false, sftp_option);
+                            transfer_status = false;
+                            //sftp_result.Check();
+
+                            MessageBox.Show("Transfer Done", "Notification", MessageBoxButtons.OK);
+                            action = "none";
+                            break;
+                        case "record":
+                            execute_result = ssh_session.ExecuteCommand("sudo touch ~/picam/hooks/start_record");
+                            action = "none";
+                            break;
+                        case "stop":
+                            execute_result = ssh_session.ExecuteCommand("sudo touch ~/picam/hooks/stop_record");
+                            action = "none";
+                            break;
+                        case "test":
+                            //execute_result = ssh_session.ExecuteCommand("sudo rm -rf /home/pi/picam/rec");
+                            //execute_result = ssh_session.ExecuteCommand("sudo chmod +x /home/pi/Project49/Scripts/TestScript.sh");
+                            execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
+                            MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
+                            action = "none";
+                            //Button_Test.Enabled = true;
+                            break;
+                        // ====================================================================================================================
+                        case "none":
+                            break;
                     }
-                    status = "off";
+
+                    // ====================================================================================================================
+                    // Check Recording Status
+                    execute_result = ssh_session.ExecuteCommand("sudo cat ~/picam/state/record");
+                    if (execute_result.Output == "false") recording_status = false;
+                    else if (execute_result.Output == "true") recording_status = true;
                 }
+                ssh_session.Close();
+                status = "off";
+                
             }
             catch (Exception error)
             {
@@ -268,7 +243,7 @@ namespace PiCamClient
             }
         }
         
-        private void Status_Refresh_Timer_Tick(object sender, EventArgs e)
+        public void Status_Refresh_Timer_Tick(object sender, EventArgs e)
         {
             switch(status)
             {
@@ -314,6 +289,10 @@ namespace PiCamClient
             }
             if(file_list_state)
             {
+                foreach(ListViewItem item in Transfer_Progress_List.Groups[1].Items)
+                {
+                    item.Remove();
+                }
                 foreach(string filename in File_List)
                 {
                     Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { filename, "Waiting" }, Transfer_Group));
@@ -344,6 +323,56 @@ namespace PiCamClient
         {
             Settings settings = new Settings();
             settings.Show();
+            while (!settings.IsDisposed);
+            MessageBox.Show("setting closed");
+        }
+
+        private void Device_List_Refresh_Timer_Tick(object sender, EventArgs e)
+        {
+            if (File.Exists(@"config.txt"))
+            {
+                try
+                {
+                    StreamReader reader = new StreamReader(@"config.txt");
+                    for (int i = 0; i < Device_Count; i++)
+                    {
+                        device_list[i] = new SessionOptions();
+                        device_list[i].HostName = "";
+                        device_list[i].UserName = "";
+                        device_list[i].Password = "";
+                        //device_list[i].SshHostKeyFingerprint = "";
+                    }
+                    PiCam_List.Items.Clear();
+                    int count = 0;
+                    while (true)
+                    {
+                        if (string.Equals(reader.ReadLine(), "----"))
+                        {
+                            PiCam_List.Items.Add(reader.ReadLine());
+                            device_list[count].HostName = reader.ReadLine();
+                            device_list[count].UserName = reader.ReadLine();
+                            device_list[count].Password = reader.ReadLine();
+                            device_list[count].SshHostKeyFingerprint = reader.ReadLine();
+                            //device_list[count].Protocol = Protocol.Sftp;
+                            count++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    reader.Close();
+                }
+                catch (Exception wrong)
+                {
+                    MessageBox.Show(wrong.Message, "Error Message", MessageBoxButtons.OK);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Possible setting file missing or broken! Please restore or create new.", "Setting File Missing", MessageBoxButtons.OK);
+            }
+            Device_List_Refresh_Timer.Enabled = false;
         }
     }
 }

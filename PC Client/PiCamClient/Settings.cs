@@ -148,6 +148,7 @@ namespace PiCamClient
                 }
             }
             writer.Close();
+            //Main.
             this.Close();
         }
     }

@@ -40,6 +40,7 @@
             this.Button_Test = new System.Windows.Forms.Button();
             this.Button_Disconnect = new System.Windows.Forms.Button();
             this.Button_Setting = new System.Windows.Forms.Button();
+            this.Device_List_Refresh_Timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Player_1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,9 +57,6 @@
             // PiCam_List
             // 
             this.PiCam_List.FormattingEnabled = true;
-            this.PiCam_List.Items.AddRange(new object[] {
-            "Eli_HA (Test Only)",
-            "PiCam 1"});
             this.PiCam_List.Location = new System.Drawing.Point(418, 12);
             this.PiCam_List.Name = "PiCam_List";
             this.PiCam_List.Size = new System.Drawing.Size(154, 21);
@@ -109,7 +107,6 @@
             this.Player_1.Size = new System.Drawing.Size(400, 225);
             this.Player_1.TabIndex = 3;
             this.Player_1.TabStop = false;
-            this.Player_1.Enter += new System.EventHandler(this.Player_1_Enter);
             // 
             // Button_Test
             // 
@@ -141,6 +138,10 @@
             this.Button_Setting.Text = "Setting";
             this.Button_Setting.UseVisualStyleBackColor = true;
             this.Button_Setting.Click += new System.EventHandler(this.Button_Setting_Click);
+            // 
+            // Device_List_Refresh_Timer
+            // 
+            this.Device_List_Refresh_Timer.Tick += new System.EventHandler(this.Device_List_Refresh_Timer_Tick);
             // 
             // Main
             // 
@@ -176,6 +177,7 @@
         private System.Windows.Forms.Button Button_Test;
         private System.Windows.Forms.Button Button_Disconnect;
         private System.Windows.Forms.Button Button_Setting;
+        private System.Windows.Forms.Timer Device_List_Refresh_Timer;
     }
 }
 
