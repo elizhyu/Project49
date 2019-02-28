@@ -27,10 +27,12 @@ chmod -x Remover.sh
 echo "Installing wiringPi"
 chmod +x wiringPiInstaller.sh
 ./wiringPiInstaller.sh
+chmod -x wiringPiInstaller.sh
 
 echo "Installing picam"
 chmod +x piCamInstaller.sh
 ./piCamInstaller.sh
+chmod -x piCamInstaller.sh
 
 echo "Enabling the 5second preview"
 chmod +x Preview.sh
