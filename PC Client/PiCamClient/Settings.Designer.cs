@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.text_name = new System.Windows.Forms.TextBox();
             this.text_hostname = new System.Windows.Forms.TextBox();
             this.text_username = new System.Windows.Forms.TextBox();
             this.text_password = new System.Windows.Forms.TextBox();
-            this.text_fingerprint = new System.Windows.Forms.TextBox();
             this.label_name = new System.Windows.Forms.Label();
             this.label_host = new System.Windows.Forms.Label();
             this.label_username = new System.Windows.Forms.Label();
             this.label_password = new System.Windows.Forms.Label();
-            this.label_fingerprint = new System.Windows.Forms.Label();
             this.Device_Select = new System.Windows.Forms.ComboBox();
             this.label_Device = new System.Windows.Forms.Label();
             this.button_save = new System.Windows.Forms.Button();
             this.button_exit = new System.Windows.Forms.Button();
+            this.Check_Visibility_Timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // text_name
@@ -75,14 +75,6 @@
             this.text_password.Size = new System.Drawing.Size(100, 20);
             this.text_password.TabIndex = 3;
             this.text_password.TextChanged += new System.EventHandler(this.text_password_TextChanged);
-            // 
-            // text_fingerprint
-            // 
-            this.text_fingerprint.Location = new System.Drawing.Point(80, 153);
-            this.text_fingerprint.Name = "text_fingerprint";
-            this.text_fingerprint.Size = new System.Drawing.Size(371, 20);
-            this.text_fingerprint.TabIndex = 4;
-            this.text_fingerprint.TextChanged += new System.EventHandler(this.text_fingerprint_TextChanged);
             // 
             // label_name
             // 
@@ -120,15 +112,6 @@
             this.label_password.TabIndex = 8;
             this.label_password.Text = "Password:";
             // 
-            // label_fingerprint
-            // 
-            this.label_fingerprint.AutoSize = true;
-            this.label_fingerprint.Location = new System.Drawing.Point(15, 156);
-            this.label_fingerprint.Name = "label_fingerprint";
-            this.label_fingerprint.Size = new System.Drawing.Size(59, 13);
-            this.label_fingerprint.TabIndex = 9;
-            this.label_fingerprint.Text = "Fingerprint:";
-            // 
             // Device_Select
             // 
             this.Device_Select.FormattingEnabled = true;
@@ -151,9 +134,9 @@
             // button_save
             // 
             this.button_save.Enabled = false;
-            this.button_save.Location = new System.Drawing.Point(255, 14);
+            this.button_save.Location = new System.Drawing.Point(3, 157);
             this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(95, 23);
+            this.button_save.Size = new System.Drawing.Size(86, 23);
             this.button_save.TabIndex = 12;
             this.button_save.Text = "Save Changes";
             this.button_save.UseVisualStyleBackColor = true;
@@ -161,35 +144,43 @@
             // 
             // button_exit
             // 
-            this.button_exit.Location = new System.Drawing.Point(356, 14);
+            this.button_exit.Location = new System.Drawing.Point(95, 157);
             this.button_exit.Name = "button_exit";
-            this.button_exit.Size = new System.Drawing.Size(94, 23);
+            this.button_exit.Size = new System.Drawing.Size(85, 23);
             this.button_exit.TabIndex = 13;
             this.button_exit.Text = "Save and Exit";
             this.button_exit.UseVisualStyleBackColor = true;
             this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
+            // Check_Visibility_Timer
+            // 
+            this.Check_Visibility_Timer.Enabled = true;
+            this.Check_Visibility_Timer.Interval = 500;
+            this.Check_Visibility_Timer.Tick += new System.EventHandler(this.Check_Visibility_Timer_Tick);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 187);
+            this.ClientSize = new System.Drawing.Size(190, 192);
+            this.ControlBox = false;
             this.Controls.Add(this.button_exit);
             this.Controls.Add(this.button_save);
             this.Controls.Add(this.label_Device);
             this.Controls.Add(this.Device_Select);
-            this.Controls.Add(this.label_fingerprint);
             this.Controls.Add(this.label_password);
             this.Controls.Add(this.label_username);
             this.Controls.Add(this.label_host);
             this.Controls.Add(this.label_name);
-            this.Controls.Add(this.text_fingerprint);
             this.Controls.Add(this.text_password);
             this.Controls.Add(this.text_username);
             this.Controls.Add(this.text_hostname);
             this.Controls.Add(this.text_name);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Settings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Settings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,15 +193,14 @@
         private System.Windows.Forms.TextBox text_hostname;
         private System.Windows.Forms.TextBox text_username;
         private System.Windows.Forms.TextBox text_password;
-        private System.Windows.Forms.TextBox text_fingerprint;
         private System.Windows.Forms.Label label_name;
         private System.Windows.Forms.Label label_host;
         private System.Windows.Forms.Label label_username;
         private System.Windows.Forms.Label label_password;
-        private System.Windows.Forms.Label label_fingerprint;
         private System.Windows.Forms.ComboBox Device_Select;
         private System.Windows.Forms.Label label_Device;
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Button button_exit;
+        private System.Windows.Forms.Timer Check_Visibility_Timer;
     }
 }

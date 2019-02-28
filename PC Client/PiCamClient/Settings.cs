@@ -15,53 +15,15 @@ namespace PiCamClient
     public partial class Settings : Form
     {
 
-        string[,] device_list = new string[10, 5];
+        string[,] device_list = new string[10, 4];
         int i = 0;
         int j = 0;
         int last_index = 0;
+        bool last_visible = false;
 
         public Settings()
         {
             InitializeComponent();
-        }
-
-        public void Settings_Load(object sender, EventArgs e)
-        {
-            if(File.Exists(@"config.txt"))
-            {
-                try
-                {
-                    StreamReader reader = new StreamReader(@"config.txt");
-                    i = 0;
-                    Device_Select.Items.Clear();
-                    while (true)
-                    {
-                        if (string.Equals(reader.ReadLine(), "----"))
-                        {
-                            device_list[i, 0] = reader.ReadLine();
-                            Device_Select.Items.Add(device_list[i, 0]);
-                            device_list[i, 1] = reader.ReadLine();
-                            device_list[i, 2] = reader.ReadLine();
-                            device_list[i, 3] = reader.ReadLine();
-                            device_list[i, 4] = reader.ReadLine();
-                            i++;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    reader.Close();
-                }
-                catch(Exception haha)
-                {
-                    MessageBox.Show(haha.Message, "Error Message", MessageBoxButtons.OK);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Possible setting file missing or broken! Please restore or create new.", "Setting File Missing", MessageBoxButtons.OK);
-            }
         }
 
         private void Device_Select_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,7 +43,7 @@ namespace PiCamClient
                         text_hostname.Text = device_list[Device_Select.SelectedIndex, 1];
                         text_username.Text = device_list[Device_Select.SelectedIndex, 2];
                         text_password.Text = device_list[Device_Select.SelectedIndex, 3];
-                        text_fingerprint.Text = device_list[Device_Select.SelectedIndex, 4];
+                        //text_fingerprint.Text = device_list[Device_Select.SelectedIndex, 4];
                         button_save.Enabled = false;
                     }
                 }
@@ -93,7 +55,7 @@ namespace PiCamClient
                 text_hostname.Text = device_list[Device_Select.SelectedIndex, 1];
                 text_username.Text = device_list[Device_Select.SelectedIndex, 2];
                 text_password.Text = device_list[Device_Select.SelectedIndex, 3];
-                text_fingerprint.Text = device_list[Device_Select.SelectedIndex, 4];
+                //text_fingerprint.Text = device_list[Device_Select.SelectedIndex, 4];
                 button_save.Enabled = false;
             }
         }
@@ -129,7 +91,7 @@ namespace PiCamClient
             device_list[Device_Select.SelectedIndex, 1] = text_hostname.Text;
             device_list[Device_Select.SelectedIndex, 2] = text_username.Text;
             device_list[Device_Select.SelectedIndex, 3] = text_password.Text;
-            device_list[Device_Select.SelectedIndex, 4] = text_fingerprint.Text;
+            //device_list[Device_Select.SelectedIndex, 4] = text_fingerprint.Text;
             button_save.Enabled = false;
         }
 
@@ -141,7 +103,7 @@ namespace PiCamClient
                 if(device_list[j, 0] != null)
                 {
                     writer.WriteLine("----");
-                    for (i = 0; i < 5; i++)
+                    for (i = 0; i < 4; i++)
                     {
                         writer.WriteLine(device_list[j, i]);
                     }
@@ -149,7 +111,60 @@ namespace PiCamClient
             }
             writer.Close();
             //Main.
-            this.Close();
+            last_visible = false;
+            this.Hide();
+        }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+            //MessageBox.Show(last_visible.ToString());
+        }
+
+        private void Check_Visibility_Timer_Tick(object sender, EventArgs e)
+        {
+            if(this.Visible && !last_visible)
+            {
+                last_visible = true;
+                if (File.Exists(@"config.txt"))
+                {
+                    try
+                    {
+                        StreamReader reader = new StreamReader(@"config.txt");
+                        i = 0;
+                        Device_Select.Items.Clear();
+                        while (true)
+                        {
+                            if (string.Equals(reader.ReadLine(), "----"))
+                            {
+                                device_list[i, 0] = reader.ReadLine();
+                                Device_Select.Items.Add(device_list[i, 0]);
+                                device_list[i, 1] = reader.ReadLine();
+                                device_list[i, 2] = reader.ReadLine();
+                                device_list[i, 3] = reader.ReadLine();
+                                //device_list[i, 4] = reader.ReadLine();
+                                i++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        reader.Close();
+                    }
+                    catch (Exception haha)
+                    {
+                        MessageBox.Show(haha.Message, "Error Message", MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Possible setting file missing or broken! Please restore or create new.", "Setting File Missing", MessageBoxButtons.OK);
+                }
+                if (Device_Select.SelectedIndex == -1 && !(Device_Select.Items.Count == 0))
+                {
+                    Device_Select.SelectedIndex = 0;
+                }
+            }
         }
     }
 }

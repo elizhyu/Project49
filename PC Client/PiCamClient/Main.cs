@@ -45,6 +45,8 @@ namespace PiCamClient
         int PiCam_Selection = -1;
         bool transfer_status = false;
 
+        Settings settings = new Settings();
+
         public Main()
         {
             InitializeComponent();
@@ -112,9 +114,7 @@ namespace PiCamClient
             Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
 
             sftp_option.TransferMode = TransferMode.Binary;
-
-            // Will continuously report progress of transfer
-            //ssh_session.FileTransferProgress += SessionFileTransferProgress;
+            Device_List_Refresh_Timer.Enabled = true;
         }
 
         private void Main_Shown(object sender, EventArgs e)
@@ -164,10 +164,9 @@ namespace PiCamClient
                             // Read 
                                 
                             RemoteDirectoryInfo directory = ssh_session.ListDirectory("/home/pi/picam/rec/");
-                            foreach(string thestring in File_List)
+                            for(int file_list_count = 0; file_list_count < File_List.Length; file_list_count++)
                             {
-                                //thestring.
-                                // clear array with for instead!!!!!!!!!!!!!!!!!!!
+                                File_List[file_list_count] = "";
                             }
                             int file_count = 0;
                             foreach (RemoteFileInfo FileInfo in directory.Files)
@@ -295,8 +294,11 @@ namespace PiCamClient
                 }
                 foreach(string filename in File_List)
                 {
-                    Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { filename, "Waiting" }, Transfer_Group));
-                    Transfer_Progress_List.Items[Transfer_Progress_List.Items.Count - 1].EnsureVisible();
+                    if (!(filename == ""))
+                    {
+                        Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { filename, "Waiting" }, Transfer_Group));
+                        Transfer_Progress_List.Items[Transfer_Progress_List.Items.Count - 1].EnsureVisible();
+                    }
                 }
                 file_list_state = false;
             }
@@ -319,60 +321,70 @@ namespace PiCamClient
             //Button_Test.Enabled = false;
         }
 
-        private void Button_Setting_Click(object sender, EventArgs e)
+        public void Button_Setting_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
+            //Settings settings = new Settings();
             settings.Show();
-            while (!settings.IsDisposed);
-            MessageBox.Show("setting closed");
+            Device_List_Refresh_Timer.Enabled = true;
+            //while (!settings.IsDisposed);
+            
         }
 
-        private void Device_List_Refresh_Timer_Tick(object sender, EventArgs e)
+        public void Device_List_Refresh_Timer_Tick(object sender, EventArgs e)
         {
-            if (File.Exists(@"config.txt"))
+            if (!settings.Visible)
             {
-                try
+                //MessageBox.Show("setting closed");
+                if (File.Exists(@"config.txt"))
                 {
-                    StreamReader reader = new StreamReader(@"config.txt");
-                    for (int i = 0; i < Device_Count; i++)
+                    try
                     {
-                        device_list[i] = new SessionOptions();
-                        device_list[i].HostName = "";
-                        device_list[i].UserName = "";
-                        device_list[i].Password = "";
-                        //device_list[i].SshHostKeyFingerprint = "";
+                        StreamReader reader = new StreamReader(@"config.txt");
+                        for (int i = 0; i < Device_Count; i++)
+                        {
+                            device_list[i] = new SessionOptions();
+                            device_list[i].HostName = "";
+                            device_list[i].UserName = "";
+                            device_list[i].Password = "";
+                            //device_list[i].SshHostKeyFingerprint = "";
+                        }
+                        PiCam_List.Items.Clear();
+                        int count = 0;
+                        while (true)
+                        {
+                            if (string.Equals(reader.ReadLine(), "----"))
+                            {
+                                PiCam_List.Items.Add(reader.ReadLine());
+                                device_list[count].HostName = reader.ReadLine();
+                                device_list[count].UserName = reader.ReadLine();
+                                device_list[count].Password = reader.ReadLine();
+                                //device_list[count].SshHostKeyFingerprint = reader.ReadLine();
+                                device_list[count].Protocol = Protocol.Sftp;
+                                device_list[count].GiveUpSecurityAndAcceptAnySshHostKey = true;
+                                count++;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        reader.Close();
                     }
-                    PiCam_List.Items.Clear();
-                    int count = 0;
-                    while (true)
+                    catch (Exception wrong)
                     {
-                        if (string.Equals(reader.ReadLine(), "----"))
-                        {
-                            PiCam_List.Items.Add(reader.ReadLine());
-                            device_list[count].HostName = reader.ReadLine();
-                            device_list[count].UserName = reader.ReadLine();
-                            device_list[count].Password = reader.ReadLine();
-                            device_list[count].SshHostKeyFingerprint = reader.ReadLine();
-                            //device_list[count].Protocol = Protocol.Sftp;
-                            count++;
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        MessageBox.Show(wrong.Message, "Error Message", MessageBoxButtons.OK);
                     }
-                    reader.Close();
                 }
-                catch (Exception wrong)
+                else
                 {
-                    MessageBox.Show(wrong.Message, "Error Message", MessageBoxButtons.OK);
+                    MessageBox.Show("Possible setting file missing or broken! Please restore or create new.", "Setting File Missing", MessageBoxButtons.OK);
                 }
+                if (PiCam_List.SelectedIndex == -1 && !(PiCam_List.Items.Count == 0))
+                {
+                    PiCam_List.SelectedIndex = 0;
+                }
+                Device_List_Refresh_Timer.Enabled = false;
             }
-            else
-            {
-                MessageBox.Show("Possible setting file missing or broken! Please restore or create new.", "Setting File Missing", MessageBoxButtons.OK);
-            }
-            Device_List_Refresh_Timer.Enabled = false;
         }
     }
 }

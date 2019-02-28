@@ -1,12 +1,10 @@
 ----
-Eli_HA
-172.16.0.183
-root
-elilili
-ssh-ed25519 256 40:b0:cb:19:3a:fc:b7:98:cd:b2:a3:58:2a:b3:ae:8c
-----
-PiCam_PCB
-192.168.1.13
+Jerremy_Picam
+192.168.1.11
 pi
 raspberry
-ssh-ed25519 256 e4:6e:bb:1e:3c:c6:24:58:3d:6e:a8:70:91:6e:5b:b9
+----
+PiCam_PCB
+192.168.1.12
+pi
+raspberry

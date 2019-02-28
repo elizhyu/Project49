@@ -141,6 +141,7 @@
             // 
             // Device_List_Refresh_Timer
             // 
+            this.Device_List_Refresh_Timer.Enabled = true;
             this.Device_List_Refresh_Timer.Tick += new System.EventHandler(this.Device_List_Refresh_Timer_Tick);
             // 
             // Main
@@ -158,6 +159,7 @@
             this.Controls.Add(this.Player_1);
             this.Controls.Add(this.Button_Transfer);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PiCam PC Client";
             this.Load += new System.EventHandler(this.Main_Load);
             this.Shown += new System.EventHandler(this.Main_Shown);
