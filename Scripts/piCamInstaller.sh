@@ -26,6 +26,7 @@ EOF
 
 chmod +x make_dirs.sh
 ./make_dirs.sh
+chmod -x make_dirs.sh
 
 # Optionally, increase microphone volume with alsamixer
 #alsamixer
