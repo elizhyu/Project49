@@ -32,6 +32,10 @@ echo "Installing picam"
 chmod +x piCamInstaller.sh
 ./piCamInstaller.sh
 
+echo "Enabling the 5second preview"
+chmod +x Preview.sh
+
+#this is currently not working
 echo "Making the C program"
 chmod +x ./Maker.sh
 ./Maker.sh
