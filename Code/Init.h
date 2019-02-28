@@ -13,9 +13,9 @@
 #define software_status_LED 4 //GREEN
 #define wifi_LED 26		//Pin 12
 #define stream_LED 5	//Pin 24
-#define Green_LED 4
+#define Green_LED 6
 #define Yellow_LED 5
-#define Red_LED 6
+#define Red_LED 4
 #define Blue_LED 26
 #define record_button 0	//Pin 27
 #define stream_button 2	//Pin 26
