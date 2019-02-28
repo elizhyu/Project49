@@ -1,0 +1,34 @@
+D:\Visual Studio Projects\PiCamClient\PiCamClient\bin\Release\PiCamClient.exe.config
+D:\Visual Studio Projects\PiCamClient\PiCamClient\bin\Release\PiCamClient.exe
+D:\Visual Studio Projects\PiCamClient\PiCamClient\bin\Release\PiCamClient.pdb
+D:\Visual Studio Projects\PiCamClient\PiCamClient\bin\Release\Tamir.SharpSsh.dll
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.Main.resources
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.Properties.Resources.resources
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.csproj.GenerateResource.cache
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.csproj.CoreCompileInputs.cache
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.csproj.CopyComplete
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.exe
+D:\Visual Studio Projects\PiCamClient\PiCamClient\obj\Release\PiCamClient.pdb
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\WinSCP.exe
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\PiCamClient.exe.config
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\PiCamClient.exe
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\PiCamClient.pdb
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\WinSCPnet.dll
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\Interop.WMPLib.dll
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\AxInterop.WMPLib.dll
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\Interop.WMPLib.dll
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\AxInterop.WMPLib.dll
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.csproj.ResolveComReference.cache
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.Main.resources
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.Properties.Resources.resources
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.Settings.resources
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.csproj.GenerateResource.cache
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.csproj.CoreCompileInputs.cache
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.csproj.CopyComplete
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.exe
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.pdb
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\PiCamClient.exe.manifest
+D:\Github\Project49\PC Client\PiCamClient\bin\Release\PiCamClient.application
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.csprojAssemblyReference.cache
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.exe.manifest
+D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.application
