@@ -35,7 +35,7 @@ chmod +x piCamInstaller.sh
 chmod -x piCamInstaller.sh
 
 echo "Enabling the 5second preview"
-chmod +x Preview.sh
+chmod +x /home/pi/Project49/Code/fivesec.sh
 
 #this is currently not working
 echo "Making the C program"
