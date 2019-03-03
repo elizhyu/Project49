@@ -32,9 +32,11 @@ void set_rec_LED(void)
 {
 	if(is_recording())
 		digitalWrite(record_LED,0);
+		digitalWrite(software_status_LED, 1);
 
 	else
 		digitalWrite(record_LED,1);
+		digitalWrite(software_status_LED, 0);
 }
 
 void rec_button(void)
@@ -108,6 +110,13 @@ void shutdown(void)
 void toggle(void)
 {
 	start_up_lights();
+}
+
+void test_record(void)
+{
+	digitalWrite(stream_LED,0);
+	system("/home/pi/Project49/Code/fivesec.sh");
+	digitalWrite(stream_LED,1);
 }
 
 
