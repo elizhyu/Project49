@@ -36,9 +36,14 @@ do
 		echo Time remaining:$time_left seconds
  	fi
 	touch hooks/start_record
+	echo Recording Starting.../
 	sleep $1
 	touch hooks/stop_record
+	echo Reecording Stopped.
+	echo
+	echo
 	sleep 2
+	
 done
 echo Done
 
