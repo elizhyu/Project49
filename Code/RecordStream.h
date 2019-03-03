@@ -14,3 +14,4 @@ void rec_button(void);	//start stop button
 void shutdown(void);	//shuts down the pi
 void set_rec_LED(void);
 void toggle(void);
+void test_record(void);
