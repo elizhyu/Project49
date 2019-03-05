@@ -44,6 +44,7 @@ chmod +x ./Maker.sh
 chmod -x ./Maker.sh
 
 #Need to add into the script the ability to add the file to load on boot
+#Right place and right text, but I have to change how this works. maybe another script?
 # echo '/home/pi/Project49/Code/main' >> /etc/rc.local
 
 
