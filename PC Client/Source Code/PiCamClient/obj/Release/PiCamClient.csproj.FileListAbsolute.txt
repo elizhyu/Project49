@@ -32,3 +32,26 @@ D:\Github\Project49\PC Client\PiCamClient\bin\Release\PiCamClient.application
 D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.csprojAssemblyReference.cache
 D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.exe.manifest
 D:\Github\Project49\PC Client\PiCamClient\obj\Release\PiCamClient.application
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\WinSCP.exe
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\PiCamClient.exe.config
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\PiCamClient.exe.manifest
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\PiCamClient.application
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\PiCamClient.exe
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\PiCamClient.pdb
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\WinSCPnet.dll
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\Interop.WMPLib.dll
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\AxInterop.WMPLib.dll
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.csprojAssemblyReference.cache
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\Interop.WMPLib.dll
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\AxInterop.WMPLib.dll
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.csproj.ResolveComReference.cache
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.Main.resources
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.Properties.Resources.resources
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.Settings.resources
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.csproj.GenerateResource.cache
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.csproj.CoreCompileInputs.cache
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.exe.manifest
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.application
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.csproj.CopyComplete
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.exe
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.pdb

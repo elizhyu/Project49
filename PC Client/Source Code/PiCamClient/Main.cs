@@ -370,5 +370,18 @@ namespace PiCamClient
                 Device_List_Refresh_Timer.Enabled = false;
             }
         }
+
+        private void Button_Browse_Click(object sender, EventArgs e)
+        {
+            Record_Dialog.Filter = "TS Files (*.ts)|*.ts|All Files (*.*)|*.*";
+            Record_Dialog.CheckFileExists = true;
+            Record_Dialog.Multiselect = false;
+            Player_1.settings.mute = false;
+            Player_1.settings.setMode("loop", true);
+            //Player_1.settings.volume = 12;
+            if (Record_Dialog.ShowDialog() != DialogResult.OK) return;
+            Player_1.URL = Record_Dialog.FileName;
+            Player_1.Ctlcontrols.play();
+        }
     }
 }

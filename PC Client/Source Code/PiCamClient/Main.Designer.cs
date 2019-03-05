@@ -41,6 +41,8 @@
             this.Button_Disconnect = new System.Windows.Forms.Button();
             this.Button_Setting = new System.Windows.Forms.Button();
             this.Device_List_Refresh_Timer = new System.Windows.Forms.Timer(this.components);
+            this.Record_Dialog = new System.Windows.Forms.OpenFileDialog();
+            this.Button_Browse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Player_1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,10 +103,10 @@
             // Player_1
             // 
             this.Player_1.Enabled = true;
-            this.Player_1.Location = new System.Drawing.Point(12, 12);
+            this.Player_1.Location = new System.Drawing.Point(12, 40);
             this.Player_1.Name = "Player_1";
             this.Player_1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("Player_1.OcxState")));
-            this.Player_1.Size = new System.Drawing.Size(400, 225);
+            this.Player_1.Size = new System.Drawing.Size(400, 278);
             this.Player_1.TabIndex = 3;
             this.Player_1.TabStop = false;
             // 
@@ -144,11 +146,26 @@
             this.Device_List_Refresh_Timer.Enabled = true;
             this.Device_List_Refresh_Timer.Tick += new System.EventHandler(this.Device_List_Refresh_Timer_Tick);
             // 
+            // Record_Dialog
+            // 
+            this.Record_Dialog.FileName = "openFileDialog1";
+            // 
+            // Button_Browse
+            // 
+            this.Button_Browse.Location = new System.Drawing.Point(13, 10);
+            this.Button_Browse.Name = "Button_Browse";
+            this.Button_Browse.Size = new System.Drawing.Size(75, 23);
+            this.Button_Browse.TabIndex = 14;
+            this.Button_Browse.Text = "Browse";
+            this.Button_Browse.UseVisualStyleBackColor = true;
+            this.Button_Browse.Click += new System.EventHandler(this.Button_Browse_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 450);
+            this.Controls.Add(this.Button_Browse);
             this.Controls.Add(this.Button_Setting);
             this.Controls.Add(this.Button_Disconnect);
             this.Controls.Add(this.Button_Test);
@@ -180,6 +197,8 @@
         private System.Windows.Forms.Button Button_Disconnect;
         private System.Windows.Forms.Button Button_Setting;
         private System.Windows.Forms.Timer Device_List_Refresh_Timer;
+        private System.Windows.Forms.OpenFileDialog Record_Dialog;
+        private System.Windows.Forms.Button Button_Browse;
     }
 }
 
