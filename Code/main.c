@@ -3,8 +3,6 @@
 #include <stdio.h>	//Standard library needed
 #include <stdbool.h> 	//this allows us to use boolean
 #include <wiringPi.h>	//might not need it in the main file
-//#include <sys/types.h>
-//#include <signal.h>
 bool stream_bool = true;	//setting the initial streaming to true
 bool wifi_found = false; //flag for checking network activity
 
@@ -17,39 +15,29 @@ bool wifi_found = false; //flag for checking network activity
 
 int main(void)
 {
-	//int checking = kill(697,0);
-	//printf("%d", checking);
 	wiringPiSetup();
 	Init_Ports();	//initilze the GPIO's
 	start_up_lights();	//start up light
-	//Init_Server();	//sets up the server and runs the lights and then sets up PiCam
 	Init_PiCam();	//sets up just PiCam, NO SERVER
 	digitalWrite(Green_LED,0);
-	//printf("All has been set up");
 
-	//can we not just use the readings as interupts?
 	int counter = 0;
 	int Networkcounter = 0;
-	int wifi_check_freq = 10000;
+	int wifi_check_freq = 20000;
 	while(1)
 	{
-		if (counter == wifi_check_freq)	//this can be even bigger - do we want any flashes?
+		if (counter == wifi_check_freq)
 		{
 			wifi_found = NetworkIndicator();
 			counter = 0;
 			Networkcounter ++;
-			//printf("%d\n",Networkcounter );
 
 			if (wifi_found)
-				wifi_check_freq = 25000;
+				wifi_check_freq = 35000;
 			else
-				wifi_check_freq = 10000;
+				wifi_check_freq = 20000;
 		}
 		set_rec_LED();
-		counter++;
-		//printf("%d\n",counter);
-		
+		counter++;		
 	}
 }
-
-
