@@ -96,12 +96,21 @@ void Init_PiCam(void)
 
 	chdir("/home/pi/picam");	//NEED TO CONFIRM
 
-	//this is how we add the ability to write the errors to a file, SomeCommand >> SomeFile.txt	
+	//this is how we add the ability to write the errors to a file, SomeCommand > SomeFile.txt	
 	//Initalizes picam software
 	system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 &");
 
-	//old one with the rstp server
-	//system("./picam --time --rtspout --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 14000 &");
+	//this is where i should check if there there is an error in the file
+	//While an error in the file
+	//flash - on 0.5 off 0.5 X 5 times
+	//clear what's in the file
+	//run the system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 &");
+	
+	//if there is an error it will loop and flash
+	//if there is no error it will load as normal
+	
+	
+	
 }
 
 
