@@ -96,7 +96,7 @@ void Init_PiCam(void)
 
 	chdir("/home/pi/picam");	//NEED TO CONFIRM
 
-	
+	//this is how we add the ability to write the errors to a file, SomeCommand >> SomeFile.txt	
 	//Initalizes picam software
 	system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 &");
 
