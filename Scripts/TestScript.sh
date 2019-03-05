@@ -26,7 +26,6 @@ do
 	
 	time_left=$loop_left*$loop_time
 	echo Recording: $i/10. Recording length $1 seconds
-	echo Time Remaining:
 	if [ $time_left -ge 60 ]; then
 		min=$time_left/60
 		sec_helper=60*$min
