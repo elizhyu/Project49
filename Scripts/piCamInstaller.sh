@@ -36,6 +36,9 @@ wget https://github.com/iizukanao/picam/releases/download/v1.4.7/picam-1.4.7-bin
 tar xvf picam-1.4.7-binary.tar.xz
 cp picam-1.4.7-binary/picam ~/picam/
 
+#we need to make a folder in picam that will house the previews
+mkdir preview #may need to be changed?
+
 cd
 cd picam
 rm state
