@@ -43,7 +43,9 @@ chmod +x ./Maker.sh
 ./Maker.sh
 chmod -x ./Maker.sh
 
-*Need to add into the script the ability to add the file to load on boot
+#Need to add into the script the ability to add the file to load on boot
+# echo '/home/pi/Project49/Code/main' >> /etc/rc.local
+
 
 #we have to reboot to complete the changes
 reboot
