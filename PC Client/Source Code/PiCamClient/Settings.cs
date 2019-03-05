@@ -43,7 +43,6 @@ namespace PiCamClient
                         text_hostname.Text = device_list[Device_Select.SelectedIndex, 1];
                         text_username.Text = device_list[Device_Select.SelectedIndex, 2];
                         text_password.Text = device_list[Device_Select.SelectedIndex, 3];
-                        //text_fingerprint.Text = device_list[Device_Select.SelectedIndex, 4];
                         button_save.Enabled = false;
                     }
                 }
@@ -55,7 +54,6 @@ namespace PiCamClient
                 text_hostname.Text = device_list[Device_Select.SelectedIndex, 1];
                 text_username.Text = device_list[Device_Select.SelectedIndex, 2];
                 text_password.Text = device_list[Device_Select.SelectedIndex, 3];
-                //text_fingerprint.Text = device_list[Device_Select.SelectedIndex, 4];
                 button_save.Enabled = false;
             }
         }
@@ -91,7 +89,6 @@ namespace PiCamClient
             device_list[Device_Select.SelectedIndex, 1] = text_hostname.Text;
             device_list[Device_Select.SelectedIndex, 2] = text_username.Text;
             device_list[Device_Select.SelectedIndex, 3] = text_password.Text;
-            //device_list[Device_Select.SelectedIndex, 4] = text_fingerprint.Text;
             button_save.Enabled = false;
         }
 
@@ -110,14 +107,8 @@ namespace PiCamClient
                 }
             }
             writer.Close();
-            //Main.
             last_visible = false;
             this.Hide();
-        }
-
-        private void Settings_Load(object sender, EventArgs e)
-        {
-            //MessageBox.Show(last_visible.ToString());
         }
 
         private void Check_Visibility_Timer_Tick(object sender, EventArgs e)
@@ -141,7 +132,6 @@ namespace PiCamClient
                                 device_list[i, 1] = reader.ReadLine();
                                 device_list[i, 2] = reader.ReadLine();
                                 device_list[i, 3] = reader.ReadLine();
-                                //device_list[i, 4] = reader.ReadLine();
                                 i++;
                             }
                             else

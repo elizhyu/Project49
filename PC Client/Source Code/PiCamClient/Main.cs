@@ -20,7 +20,6 @@ namespace PiCamClient
     {
         const int Device_Count = 10;
         public SessionOptions[] device_list = new SessionOptions[Device_Count];
-        //"ssh-ed25519 256 b0:2c:21:d8:bd:e4:c8:c3:9d:b9:2a:a4:90:06:c5:8a"
 
         // Transfer Progress List Groups
         ListViewGroup Initiation_Group = new ListViewGroup("Live Monitor");
@@ -128,11 +127,7 @@ namespace PiCamClient
         private async void Button_Connect_Click(object sender, EventArgs e)
         {
             status_check_stop_flag = false;
-            //Button_Connect.Enabled = false;
-            //Button_Disconnect.Enabled = true;
             await Task.Run((Action)status_check_function);
-            //Button_Connect.Enabled = true;
-            //Button_Disconnect.Enabled = false;
         }
 
 
@@ -144,7 +139,6 @@ namespace PiCamClient
         private void status_check_function()
         {
             status = "ing";
-            //Stuff Happens
             try
             {
                 // ====================================================================================================================
@@ -196,7 +190,6 @@ namespace PiCamClient
 
                                 
                             // Transfer Files
-                                
                             //sftp_result = ssh_session.PutFiles(@"D:\Downloads\Bla Bla Bla\Pokemon\*", "/home/pi/Pictures/", false, sftp_option);
                             sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"D:\Project49\", false, sftp_option);
                             transfer_status = false;
@@ -214,12 +207,9 @@ namespace PiCamClient
                             action = "none";
                             break;
                         case "test":
-                            //execute_result = ssh_session.ExecuteCommand("sudo rm -rf /home/pi/picam/rec");
-                            //execute_result = ssh_session.ExecuteCommand("sudo chmod +x /home/pi/Project49/Scripts/TestScript.sh");
                             execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
                             MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
                             action = "none";
-                            //Button_Test.Enabled = true;
                             break;
                         // ====================================================================================================================
                         case "none":
@@ -318,15 +308,12 @@ namespace PiCamClient
         private void Button_Test_Click(object sender, EventArgs e)
         {
             action = "test";
-            //Button_Test.Enabled = false;
         }
 
         public void Button_Setting_Click(object sender, EventArgs e)
         {
-            //Settings settings = new Settings();
             settings.Show();
             Device_List_Refresh_Timer.Enabled = true;
-            //while (!settings.IsDisposed);
             
         }
 
@@ -334,7 +321,6 @@ namespace PiCamClient
         {
             if (!settings.Visible)
             {
-                //MessageBox.Show("setting closed");
                 if (File.Exists(@"config.txt"))
                 {
                     try
@@ -346,7 +332,6 @@ namespace PiCamClient
                             device_list[i].HostName = "";
                             device_list[i].UserName = "";
                             device_list[i].Password = "";
-                            //device_list[i].SshHostKeyFingerprint = "";
                         }
                         PiCam_List.Items.Clear();
                         int count = 0;
@@ -358,7 +343,6 @@ namespace PiCamClient
                                 device_list[count].HostName = reader.ReadLine();
                                 device_list[count].UserName = reader.ReadLine();
                                 device_list[count].Password = reader.ReadLine();
-                                //device_list[count].SshHostKeyFingerprint = reader.ReadLine();
                                 device_list[count].Protocol = Protocol.Sftp;
                                 device_list[count].GiveUpSecurityAndAcceptAnySshHostKey = true;
                                 count++;
