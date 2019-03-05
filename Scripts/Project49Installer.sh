@@ -43,6 +43,7 @@ chmod +x ./Maker.sh
 ./Maker.sh
 chmod -x ./Maker.sh
 
+*Need to add into the script the ability to add the file to load on boot
 
 #we have to reboot to complete the changes
 reboot
