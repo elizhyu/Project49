@@ -47,6 +47,11 @@ chmod -x ./Maker.sh
 #Right place and right text, but I have to change how this works. maybe another script?
 # echo '/home/pi/Project49/Code/main' >> /etc/rc.local
 
+echo "Adding the program to run on boot"
+chmod +x runOnBoot.sh
+./runOnBoot.sh
+chmod -x runOnBoot.sh
+
 
 #we have to reboot to complete the changes
 reboot
