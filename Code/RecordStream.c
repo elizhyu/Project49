@@ -109,8 +109,10 @@ void toggle(void)
 //5 second recording functions - mapped to the middle button
 void test_record(void)
 {
+	//might not need
 	digitalWrite(stream_LED,0);
 	system("/home/pi/Project49/Code/fivesec.sh");
+	//might not need
 	digitalWrite(stream_LED,1);
 }
 
