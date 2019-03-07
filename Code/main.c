@@ -10,16 +10,15 @@ bool wifi_found = false; //flag for checking network activity
 #include "Init.h"	//the intialize GPIO 
 #include "RecordStream.h"	//the recording functions and sets up the interrupts for the pushbuttons
 #include "NetworkChecker.h"
-//#include "bq27xxx_battery.c"
-//#include "bq27xxx_battery_i2c.c"
+
 
 int main(void)
 {
-	wiringPiSetup();
+	wiringPiSetup();	//needed to use wiringPi
 	Init_Ports();	//initilze the GPIO's
 	start_up_lights();	//start up light
 	Init_PiCam();	//sets up just PiCam, NO SERVER
-	digitalWrite(Green_LED,0);
+	digitalWrite(Green_LED,0);	//turn on the green light once everything has been set up
 
 	int counter = 0;
 	int Networkcounter = 0;
