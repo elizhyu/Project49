@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Resources;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinSCP;
 using WMPLib;
 
 using PiCamClient.Properties;
+using Vlc.DotNet.Forms;
+using Vlc.DotNet.Core.Interops;
 
 namespace PiCamClient
 {
@@ -36,6 +39,7 @@ namespace PiCamClient
 
         // Background Stop Flag
         bool status_check_stop_flag = false;
+        bool test_flag = false;
 
         // 
         string status = "off";
@@ -49,6 +53,15 @@ namespace PiCamClient
         public Main()
         {
             InitializeComponent();
+
+            //var currentAssembly = Assembly.GetEntryAssembly();
+            //var currentDirectory = new FileInfo(currentAssembly.Location).DirectoryName;
+            //var libDirectory = new DirectoryInfo(Path.Combine(currentDirectory, "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
+            //VLC_Player.BeginInit();
+            //VLC_Player.VlcLibDirectory = libDirectory;
+            //((System.ComponentModel.ISupportInitialize)(this.VLC_Player)).EndInit();
+            //VLC_Player.EndInit();
+            //this.Controls.Add(VLC_Player);
         }
 
         private void Button_Transfer_Click(object sender, EventArgs e)
@@ -88,8 +101,10 @@ namespace PiCamClient
 
         private void Main_Load(object sender, EventArgs e)
         {
+
             //Player_1.URL = @"D:\Project49\2019-01-15_16-19-33.ts";
             //Player_1.Ctlcontrols.play();
+            
 
             // Media Player Initiation
             Player_1.Ctlenabled = false;
@@ -209,6 +224,8 @@ namespace PiCamClient
                         case "test":
                             execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
                             MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/preview.ts", @"D:\Project49\", true, sftp_option);
+                            test_flag = true;
                             action = "none";
                             break;
                         // ====================================================================================================================
@@ -292,6 +309,12 @@ namespace PiCamClient
                 }
                 file_list_state = false;
             }
+            if(test_flag)
+            {
+                test_flag = false;
+                Player_1.URL = @"D:\Project49\preview.ts";
+                Player_1.Ctlcontrols.play();
+            }
         }
 
         private void PiCam_List_SelectedIndexChanged(object sender, EventArgs e)
@@ -371,17 +394,45 @@ namespace PiCamClient
             }
         }
 
-        private void Button_Browse_Click(object sender, EventArgs e)
+        public void Button_Browse_Click(object sender, EventArgs e)
         {
+            Player_1.Ctlcontrols.stop();
+            Media_Player_Timer.Enabled = false;
             Record_Dialog.Filter = "TS Files (*.ts)|*.ts|All Files (*.*)|*.*";
             Record_Dialog.CheckFileExists = true;
             Record_Dialog.Multiselect = false;
             Player_1.settings.mute = false;
             Player_1.settings.setMode("loop", true);
-            //Player_1.settings.volume = 12;
             if (Record_Dialog.ShowDialog() != DialogResult.OK) return;
             Player_1.URL = Record_Dialog.FileName;
             Player_1.Ctlcontrols.play();
+            //FileInfo player_file = new FileInfo(Record_Dialog.FileName);
+            //VLC_Player.SetMedia(player_file);
+            //VLC_Player.VlcMediaPlayer.
+            //VLC_Player.Play(Record_Dialog.FileName);
+            Media_Player_Timer.Enabled = true;
+        }
+
+        private void Button_Pause_Click(object sender, EventArgs e)
+        {
+            if (Player_1.playState == WMPPlayState.wmppsPaused)
+            {
+                Player_1.Ctlcontrols.play();
+                Button_Pause.Text = "Pause";
+            }
+            else if (Player_1.playState == WMPPlayState.wmppsPlaying)
+            {
+                Player_1.Ctlcontrols.pause();
+                Button_Pause.Text = "Resume";
+            }
+        }
+
+        private void Media_Player_Timer_Tick(object sender, EventArgs e)
+        {
+            if (Player_1.playState == WMPPlayState.wmppsPlaying)
+            {
+                label_duration.Text = "/ " + Player_1.currentMedia.durationString;
+            }
         }
     }
 }
