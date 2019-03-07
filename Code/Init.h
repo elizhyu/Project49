@@ -31,3 +31,4 @@ void Init_Ports(void);	//sets up the IO
 void Init_PiCam(void);	//set up 
 void start_up_lights(void);	//set up start up lights
 void Init_Server(void);
+void Updated_Init_PiCam(void);  //doesn't currently work
