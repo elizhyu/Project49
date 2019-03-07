@@ -30,13 +30,15 @@ bool is_recording(void)
 
 void set_rec_LED(void)
 {
-	if(is_recording())
+	if(is_recording()){
 		digitalWrite(record_LED,0);
 		digitalWrite(software_status_LED, 1);
+	}
 
-	else
+	else {
 		digitalWrite(record_LED,1);
 		digitalWrite(software_status_LED, 0);
+	}
 }
 
 void rec_button(void)
