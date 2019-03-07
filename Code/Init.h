@@ -21,9 +21,9 @@
 #define stream_LED Yellow_LED	//Pin 24
 
 //BUTTON
-#define record_button 0	//Pin 27
-#define stream_button 2	//Pin 26
-#define shutdown_button 25	//Pin 17
+#define record_button 0	//Pin 0
+#define stream_button 2	//Pin 2
+#define shutdown_button 3	//Pin 3
 
 
 //FUNCTIONS
