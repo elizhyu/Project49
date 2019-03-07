@@ -4,11 +4,12 @@
 #./TestScript.sh 10 will run the recording for 10 seconds 
 #It will always loop for 10 times - that's what our test plan says
 
-cd
-cd Project49
-cd Code
-make -B
-./main
+#no longer needed, but kept incase we want to use it again
+#cd
+#cd Project49
+#cd Code
+#make -B
+#./main
 
 declare -i time_left
 declare -i loop_left
