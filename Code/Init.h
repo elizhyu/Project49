@@ -26,7 +26,7 @@
 #define shutdown_button 25	//Pin 17
 
 
-
+//FUNCTIONS
 void Init_Ports(void);	//sets up the IO
 void Init_PiCam(void);	//set up 
 void start_up_lights(void);	//set up start up lights
