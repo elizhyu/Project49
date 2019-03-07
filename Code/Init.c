@@ -10,17 +10,14 @@ void Init_Ports(void)
 
 	delay(100);
 	
-	system("sudo rm -r ~/picam/rec/tmp -f");
+	system("sudo rm -r ~/picam/rec/tmp -f");	//this is to prevent a possible error with the folder
 	delay(100);
-	
-	//this is needed to run all of the things from wiringPi
-	//wiringPiSetup();	
 
 	//recording status LED: RED
 	pinMode(record_LED,OUTPUT);	//sets it as output
 
 	//software status LED: GREEN
-	pinMode(software_status_LED,OUTPUT);
+	pinMode(software_status_LED,OUTPUT);	//sets it as output
 
 	//wireless status LED: BLUE
 	pinMode(wifi_LED,OUTPUT);	//Setting as Output
@@ -37,18 +34,11 @@ void Init_Ports(void)
 	//shutdown_button: PB_3
 	pinMode(shutdown_button,INPUT); //Setting as Input
 
-	/*INTERUPTS (going to move these to the intialized buttons)*/
-	//wiringPiISR(record_button,INT_EDGE_FALLING, start_up_lights);
-	//wiringPiISR(shutdown_button,INT_EDGE_FALLING, start_up_lights);
-	//wiringPiISR(stream_button,INT_EDGE_FALLING, start_up_lights);
-
 	wiringPiISR(record_button,INT_EDGE_FALLING, rec_button);	//sets the record button to the record button function
 
 	wiringPiISR(shutdown_button, INT_EDGE_FALLING, shutdown);//shuts down 	the Pi when the the button is pressed (FALLING EDGE)
 
 	wiringPiISR(stream_button, INT_EDGE_FALLING, toggle);
-	
-	//not sure what the plans for streaming are currently
 }
 
 void start_up_lights(void)
@@ -90,8 +80,9 @@ void Init_Server(void)
 void Init_PiCam(void)
 {
 
-	chdir("/home/pi/picam");	//NEED TO CONFIRM
-
+	chdir("/home/pi/picam");	//change directory to go to picam
+	
+	//starts up picam - this version does not do any error checking
 	system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 &");	
 }
 
