@@ -3,6 +3,9 @@
 #this script will add the main file to the file that allows the program to run on boot
 #nned to confirm that this works
 
+#example to put it on the line you want
+#sed '3 s/unix/linux/' geekfile.txt
+
 echo '#!/bin/sh -e
 #
 # rc.local
