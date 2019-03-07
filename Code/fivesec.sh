@@ -13,7 +13,7 @@ echo -e "dir=/home/pi/picam/preview\nfilename=preview.ts" > /home/pi/picam/hooks
 sleep 5
 
 #stop recording
-touch /home/pi/picam/hooks/start_record
+touch /home/pi/picam/hooks/stop_record
 
 #turn off the yellow light manually
 echo "gpio write 6 1"
