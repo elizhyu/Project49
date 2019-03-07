@@ -43,6 +43,13 @@ void Init_Ports(void)
 
 void start_up_lights(void)
   {
+	//turn off lights first
+
+	digitalWrite (Green_LED, 1) ;	// Off
+	digitalWrite (Yellow_LED, 1) ;	// Off
+	digitalWrite (Red_LED, 1) ;	// Off
+	digitalWrite (Blue_LED, 1) ;	// Off
+	
     digitalWrite (Green_LED, 0) ;	// On
     delay (100) ;               	// 100 mS
     digitalWrite (Green_LED, 1) ;	// Off
