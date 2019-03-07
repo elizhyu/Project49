@@ -24,6 +24,7 @@ ln -sfn $SHM_DIR/hooks $DEST_DIR/hooks
 ln -sfn $SHM_DIR/state $DEST_DIR/state
 EOF
 
+#I'm guessing that I need to change the directory??
 chmod +x make_dirs.sh
 ./make_dirs.sh
 chmod -x make_dirs.sh
