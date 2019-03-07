@@ -38,7 +38,7 @@ void Init_Ports(void)
 
 	wiringPiISR(shutdown_button, INT_EDGE_FALLING, shutdown);//shuts down 	the Pi when the the button is pressed (FALLING EDGE)
 
-	wiringPiISR(stream_button, INT_EDGE_FALLING, toggle);
+	wiringPiISR(stream_button, INT_EDGE_FALLING, test_record);
 }
 
 void start_up_lights(void)
