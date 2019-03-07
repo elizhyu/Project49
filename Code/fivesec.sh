@@ -5,7 +5,7 @@
 rm -r /home/pi/picam/preview/*.ts
 
 #turn on the yellow light manually
-echo "gpio mode 6 out"
+#echo "gpio mode 6 out"
 echo "gpio write 0 1"
 
 #start recording
