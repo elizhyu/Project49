@@ -89,29 +89,77 @@ void Init_Server(void)
 
 void Init_PiCam(void)
 {
-	//NOTE: if we want to be able to change the parameters from the PC client we will need to make the numerical values into variables
-	//change the directory
-
-	//Init_Server();
 
 	chdir("/home/pi/picam");	//NEED TO CONFIRM
 
-	//this is how we add the ability to write the errors to a file, SomeCommand > SomeFile.txt	
-	//Initalizes picam software
-	system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 &");
-
-	//this is where i should check if there there is an error in the file
-	//While an error in the file
-	//flash - on 0.5 off 0.5 X 5 times
-	//clear what's in the file
-	//run the system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 &");
-	
-	//if there is an error it will loop and flash
-	//if there is no error it will load as normal
-	
-	
-	
+	system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 &");	
 }
 
+void Updated_Init_PiCam(void)
+{
+	const char errorholder[10] = "error";
+	//char *errorholder = "error";
+	int ret;
+	int find_result = 0;
+	int goodToGo = 0;
 
+	//File pointer for File I/O
+    FILE *fp;
+
+	//clear all of the contents in the file
+    fopen("/home/pi/picam/errorfile.txt","w");
+    fclose(fp);
+
+
+	//while everything it not initalized....
+	while(goodToGo==0){
+
+		chdir("/home/pi/picam");	//NEED TO CONFIRM
+
+
+		//Initalizes picam software
+		system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 > errorfile.txt 2>&1");
+
+		//character array to store string
+		char str[200];
+		fp = fopen("/home/pi/picam/errorfile.txt" , "r");
+
+		//check and see if there are any things showing "errors"
+
+		while(fgets(str,200,fp)!=NULL) {
+			if((strstr(str,errorholder)) != NULL) {
+				find_result = 1;
+				break;
+			}
+		}
+		//close the file
+		fclose(fp);
+
+		//there was an error found....
+		if(find_result == 1){
+			for(int i=0; i>5;i++)
+			{
+				digitalWrite (Green_LED, 0) ; //on
+				digitalWrite (Yellow_LED, 0) ;	//on
+				digitalWrite (Red_LED, 0) ;	//on
+				delay(500);	//delay 0.5 seconds
+		        digitalWrite (Green_LED, 1) ;	//off
+		        digitalWrite (Yellow_LED, 1) ;	//off
+		        digitalWrite (Red_LED, 1) ;	//off
+		        delay(500);	//delay 0.5 seconds
+
+			}
+			find_result=0;	//reseting this flag variable back
+		}
+		
+		else {
+		//there was no match, everything is ready to go
+		goodToGo = 1;
+		}
+
+		//clear all of the contents in the file
+		fopen("/home/pi/picam/errorfile.txt","w");
+		fclose(fp);
+	}
+}
 
