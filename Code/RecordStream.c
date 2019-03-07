@@ -42,51 +42,44 @@ void set_rec_LED(void)
 void rec_button(void)
 {
 	delay(10);	//for coding debouncing
-	//printf("Record/Stop Button Pressed");	
 	FILE *rec_file;	//creates the pinter used to read
+	
 	//Is recording right now
 	if(is_recording() == true)	//we are going to stop recording and turn off light[make it a 1]
 	{
-		rec_file = fopen("/home/pi/picam/hooks/stop_record", "w");	//opens the file
-
+		rec_file = fopen("/home/pi/picam/hooks/stop_record", "w");	//opens the file and clears content
 		fclose(rec_file);	//closes the file
 		
+		//ensure that that the record LED gets turned off [setting as 1]
 		do
 		{
 			digitalWrite(record_LED,1);
 		}while (digitalRead(record_LED) == 0);
 
+		//ensure green LED gets turned off [setting as 0]
 		do
 		{
 			digitalWrite(Green_LED,0);
 		}while (digitalRead(Green_LED) == 1);
-		//digitalWrite()
-		//digitalWrite(record_LED, 1);	//turns off the recording LED (Negative logic?)
-		//digitalWrite(record_LED,1);	//turns off the recording LED -> would be better to call isRecording() here to actually check the status
 	}
-	//stream_resume();
 	else
 	{
+		rec_file = fopen("/home/pi/picam/hooks/start_record", "w"); //opens the file and clears content
+		fclose(rec_file);//closes the file
 
-		rec_file = fopen("/home/pi/picam/hooks/start_record", "w");
-
-		
-		fclose(rec_file);
-
+		//ensure that that the record LED gets turned on [setting as 0]
 		do
 		{
 			digitalWrite(record_LED,0);
 		}while (digitalRead(record_LED) == 1);
-
+		
+		//ensure green LED gets turned on [setting as 1]
 		do
 		{
 			digitalWrite(Green_LED,1);
 		}while (digitalRead(Green_LED) == 0);
-		//digitalWrite(record_LED,0);	//turns on the recording LED
 	}
 	delay(10);
-	//set_rec_LED();	//not sure why we need this again
-	//set_rec_LED();
 }
 
 void shutdown(void)
@@ -101,24 +94,23 @@ void shutdown(void)
 		fclose(rec_file);	//closes the file
 		delay(3000);
 	}
-	//run the start up lights to indicate that it's shutting down?
+	//run the start up lights to indicate that it's shutting down
 	start_up_lights();
 	//then turn it off
-	system("sudo shutdown now");	//not sure if this will work...
+	system("sudo shutdown now");
 }
 
+//function used to test and find pins for push buttons
 void toggle(void)
 {
 	start_up_lights();
 }
 
+//5 second recording functions - mapped to the middle button
 void test_record(void)
 {
 	digitalWrite(stream_LED,0);
 	system("/home/pi/Project49/Code/fivesec.sh");
 	digitalWrite(stream_LED,1);
 }
-
-
-
 
