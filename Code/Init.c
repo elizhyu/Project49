@@ -111,8 +111,11 @@ void Updated_Init_PiCam(void)
 
 	//while everything it not initalized....
 	while(goodToGo==0){
+		
+		system("sudo pkill picam");	//just in case it's running
+		delay(100);	//delay for 100 ms to ensure that it's closed it
 
-		chdir("/home/pi/picam");	//NEED TO CONFIRM
+		chdir("/home/pi/picam");
 
 
 		//Initalizes picam software
