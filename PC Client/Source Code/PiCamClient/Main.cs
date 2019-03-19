@@ -101,10 +101,9 @@ namespace PiCamClient
 
         private void Main_Load(object sender, EventArgs e)
         {
-
             //Player_1.URL = @"D:\Project49\2019-01-15_16-19-33.ts";
             //Player_1.Ctlcontrols.play();
-            
+
 
             // Media Player Initiation
             Player_1.Ctlenabled = false;
@@ -206,7 +205,7 @@ namespace PiCamClient
                                 
                             // Transfer Files
                             //sftp_result = ssh_session.PutFiles(@"D:\Downloads\Bla Bla Bla\Pokemon\*", "/home/pi/Pictures/", false, sftp_option);
-                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"D:\Project49\", false, sftp_option);
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"D:\Project49\", true, sftp_option);
                             transfer_status = false;
                             //sftp_result.Check();
 
@@ -224,6 +223,7 @@ namespace PiCamClient
                         case "test":
                             execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
                             MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
+                            if (File.Exists(@"D:\Project49\preview.ts")) File.Delete(@"D:\Project49\preview.ts");
                             sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/preview.ts", @"D:\Project49\", true, sftp_option);
                             test_flag = true;
                             action = "none";
