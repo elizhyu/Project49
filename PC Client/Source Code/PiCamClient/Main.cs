@@ -379,11 +379,13 @@ namespace PiCamClient
                     }
                     catch (Exception wrong)
                     {
+                        Device_List_Refresh_Timer.Enabled = false;
                         MessageBox.Show(wrong.Message, "Error Message", MessageBoxButtons.OK);
                     }
                 }
                 else
                 {
+                    Device_List_Refresh_Timer.Enabled = false;
                     if (MessageBox.Show("Possible setting file missing or broken! Do you want to locate it now?", "Setting File Missing", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         if (Config_File_Dialog.ShowDialog() == DialogResult.OK)
