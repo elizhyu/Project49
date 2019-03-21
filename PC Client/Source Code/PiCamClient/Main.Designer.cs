@@ -46,6 +46,7 @@
             this.Button_Pause = new System.Windows.Forms.Button();
             this.Media_Player_Timer = new System.Windows.Forms.Timer(this.components);
             this.label_duration = new System.Windows.Forms.Label();
+            this.Config_File_Dialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.Player_1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -188,6 +189,10 @@
             this.label_duration.TabIndex = 16;
             this.label_duration.Text = "/ 00:00";
             // 
+            // Config_File_Dialog
+            // 
+            this.Config_File_Dialog.FileName = "openFileDialog1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,6 +238,7 @@
         private System.Windows.Forms.Button Button_Pause;
         private System.Windows.Forms.Timer Media_Player_Timer;
         private System.Windows.Forms.Label label_duration;
+        private System.Windows.Forms.OpenFileDialog Config_File_Dialog;
     }
 }
 

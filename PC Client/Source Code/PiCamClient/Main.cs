@@ -101,9 +101,9 @@ namespace PiCamClient
 
         private void Main_Load(object sender, EventArgs e)
         {
-            //Player_1.URL = @"D:\Project49\2019-01-15_16-19-33.ts";
-            //Player_1.Ctlcontrols.play();
-
+            Config_File_Dialog.Filter = "TXT Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            Config_File_Dialog.CheckFileExists = true;
+            Config_File_Dialog.Multiselect = false;
 
             // Media Player Initiation
             Player_1.Ctlenabled = false;
@@ -384,7 +384,48 @@ namespace PiCamClient
                 }
                 else
                 {
-                    MessageBox.Show("Possible setting file missing or broken! Please restore or create new.", "Setting File Missing", MessageBoxButtons.OK);
+                    if (MessageBox.Show("Possible setting file missing or broken! Do you want to locate it now?", "Setting File Missing", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (Config_File_Dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            File.Copy(Config_File_Dialog.FileName, @"config.txt", true);
+                            try
+                            {
+                                StreamReader reader = new StreamReader(@"config.txt");
+                                for (int i = 0; i < Device_Count; i++)
+                                {
+                                    device_list[i] = new SessionOptions();
+                                    device_list[i].HostName = "";
+                                    device_list[i].UserName = "";
+                                    device_list[i].Password = "";
+                                }
+                                PiCam_List.Items.Clear();
+                                int count = 0;
+                                while (true)
+                                {
+                                    if (string.Equals(reader.ReadLine(), "----"))
+                                    {
+                                        PiCam_List.Items.Add(reader.ReadLine());
+                                        device_list[count].HostName = reader.ReadLine();
+                                        device_list[count].UserName = reader.ReadLine();
+                                        device_list[count].Password = reader.ReadLine();
+                                        device_list[count].Protocol = Protocol.Sftp;
+                                        device_list[count].GiveUpSecurityAndAcceptAnySshHostKey = true;
+                                        count++;
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                reader.Close();
+                            }
+                            catch (Exception wrong)
+                            {
+                                MessageBox.Show(wrong.Message, "Error Message", MessageBoxButtons.OK);
+                            }
+                        }
+                    }
                 }
                 if (PiCam_List.SelectedIndex == -1 && !(PiCam_List.Items.Count == 0))
                 {
