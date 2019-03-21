@@ -439,6 +439,10 @@ namespace PiCamClient
 
         public void Button_Browse_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) + @"\records\");
+            System.IO.Directory.CreateDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) + @"\records\");
+            //Record_Dialog.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) + @"\records\";
+            //@"..\\records\";
             Player_1.Ctlcontrols.stop();
             Media_Player_Timer.Enabled = false;
             Record_Dialog.Filter = "TS Files (*.ts)|*.ts|All Files (*.*)|*.*";
