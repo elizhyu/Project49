@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PiCamClient.exe" size="163768">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PiCamClient.exe" size="164280">
       <assemblyIdentity name="PiCamClient" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bQJo/qqGL1G0QhoNeVu6pCXTV165nmtTWrizPLrSKoA=</dsig:DigestValue>
+        <dsig:DigestValue>99vuZuznW8nqYmBbySL0IvlwBRCZaAZPhNHKll0k7nM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -1,0 +1,10 @@
+----
+Jerremy_Picam
+192.168.1.11
+pi
+raspberry
+----
+PiCam_PCB
+192.168.1.12
+pi
+raspberry
