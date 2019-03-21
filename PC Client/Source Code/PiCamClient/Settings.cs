@@ -148,13 +148,53 @@ namespace PiCamClient
                 }
                 else
                 {
-                    MessageBox.Show("Possible setting file missing or broken! Please restore or create new.", "Setting File Missing", MessageBoxButtons.OK);
+                    if( MessageBox.Show("Possible setting file missing or broken! Do you want to locate it now?", "Setting File Missing", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (Config_File_Dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            File.Copy(Config_File_Dialog.FileName, @"config.txt", true);
+                            try
+                            {
+                                StreamReader reader = new StreamReader(@"config.txt");
+                                i = 0;
+                                Device_Select.Items.Clear();
+                                while (true)
+                                {
+                                    if (string.Equals(reader.ReadLine(), "----"))
+                                    {
+                                        device_list[i, 0] = reader.ReadLine();
+                                        Device_Select.Items.Add(device_list[i, 0]);
+                                        device_list[i, 1] = reader.ReadLine();
+                                        device_list[i, 2] = reader.ReadLine();
+                                        device_list[i, 3] = reader.ReadLine();
+                                        i++;
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                reader.Close();
+                            }
+                            catch (Exception haha)
+                            {
+                                MessageBox.Show(haha.Message, "Error Message", MessageBoxButtons.OK);
+                            }
+                        }
+                    }
                 }
                 if (Device_Select.SelectedIndex == -1 && !(Device_Select.Items.Count == 0))
                 {
                     Device_Select.SelectedIndex = 0;
                 }
             }
+        }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+            Config_File_Dialog.Filter = "TXT Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            Config_File_Dialog.CheckFileExists = true;
+            Config_File_Dialog.Multiselect = false;
         }
     }
 }

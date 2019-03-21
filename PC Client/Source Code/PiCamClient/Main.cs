@@ -205,7 +205,7 @@ namespace PiCamClient
                                 
                             // Transfer Files
                             //sftp_result = ssh_session.PutFiles(@"D:\Downloads\Bla Bla Bla\Pokemon\*", "/home/pi/Pictures/", false, sftp_option);
-                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"D:\Project49\", true, sftp_option);
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"\records\", true, sftp_option);
                             transfer_status = false;
                             //sftp_result.Check();
 
@@ -223,8 +223,8 @@ namespace PiCamClient
                         case "test":
                             execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
                             MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
-                            if (File.Exists(@"D:\Project49\preview.ts")) File.Delete(@"D:\Project49\preview.ts");
-                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/preview.ts", @"D:\Project49\", true, sftp_option);
+                            if (File.Exists(@"\records\preview.ts")) File.Delete(@"\records\preview.ts");
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/preview.ts", @"\records\", true, sftp_option);
                             test_flag = true;
                             action = "none";
                             break;
@@ -312,7 +312,7 @@ namespace PiCamClient
             if(test_flag)
             {
                 test_flag = false;
-                Player_1.URL = @"D:\Project49\preview.ts";
+                Player_1.URL = @"\records\preview.ts";
                 Player_1.Ctlcontrols.play();
             }
         }
@@ -406,10 +406,6 @@ namespace PiCamClient
             if (Record_Dialog.ShowDialog() != DialogResult.OK) return;
             Player_1.URL = Record_Dialog.FileName;
             Player_1.Ctlcontrols.play();
-            //FileInfo player_file = new FileInfo(Record_Dialog.FileName);
-            //VLC_Player.SetMedia(player_file);
-            //VLC_Player.VlcMediaPlayer.
-            //VLC_Player.Play(Record_Dialog.FileName);
             Media_Player_Timer.Enabled = true;
         }
 

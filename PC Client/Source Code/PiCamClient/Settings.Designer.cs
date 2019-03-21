@@ -42,6 +42,7 @@
             this.button_save = new System.Windows.Forms.Button();
             this.button_exit = new System.Windows.Forms.Button();
             this.Check_Visibility_Timer = new System.Windows.Forms.Timer(this.components);
+            this.Config_File_Dialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // text_name
@@ -158,6 +159,10 @@
             this.Check_Visibility_Timer.Interval = 500;
             this.Check_Visibility_Timer.Tick += new System.EventHandler(this.Check_Visibility_Timer_Tick);
             // 
+            // Config_File_Dialog
+            // 
+            this.Config_File_Dialog.FileName = "openFileDialog1";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,6 +186,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.Settings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +207,6 @@
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Button button_exit;
         private System.Windows.Forms.Timer Check_Visibility_Timer;
+        private System.Windows.Forms.OpenFileDialog Config_File_Dialog;
     }
 }
