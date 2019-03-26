@@ -214,8 +214,9 @@ namespace PiCamClient
                         case "test":
                             execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
                             MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
-                            if (File.Exists(@"C:\PiCam\records\preview.ts")) File.Delete(@"C:\PiCam\records\preview.ts");
+                            if (File.Exists(@"C:\PiCam\records\last_preview.ts")) File.Delete(@"C:\PiCam\records\last_preview.ts");
                             sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/preview.ts", @"C:\PiCam\records\", true, sftp_option);
+                            if (!File.Exists(@"C:\PiCam\records\last_preview.ts")) File.Move(@"C:\PiCam\records\preview.ts", @"C:\PiCam\records\last_preview.ts");
                             test_flag = true;
                             action = "none";
                             break;
@@ -303,8 +304,11 @@ namespace PiCamClient
             if(test_flag)
             {
                 test_flag = false;
-                Player_1.URL = @"C:\PiCam\records\preview.ts";
+                Player_1.settings.mute = false;
+                Player_1.settings.setMode("loop", true);
+                Player_1.URL = @"C:\PiCam\records\last_preview.ts";
                 Player_1.Ctlcontrols.play();
+                Media_Player_Timer.Enabled = true;
             }
         }
 
@@ -463,7 +467,7 @@ namespace PiCamClient
         {
             if (Player_1.playState == WMPPlayState.wmppsPlaying)
             {
-                label_duration.Text = "/ " + Player_1.currentMedia.durationString;
+                label_duration.Text = Player_1.Ctlcontrols.currentPositionString + " / " + Player_1.currentMedia.durationString;
             }
         }
     }
