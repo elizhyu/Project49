@@ -97,8 +97,8 @@ namespace PiCamClient
             Config_File_Dialog.Multiselect = false;
 
             // Media Player Initiation
-            Player_1.Ctlenabled = false;
-            Player_1.uiMode = "none";
+            Player_1.Ctlenabled = true;
+            Player_1.uiMode = "full";//"none";
             
             // Transfer Progress List Settings
             Transfer_Progress_List.Groups.Add(Initiation_Group);
@@ -162,7 +162,7 @@ namespace PiCamClient
                             transfer_status = true;
                             // Read 
                                 
-                            RemoteDirectoryInfo directory = ssh_session.ListDirectory("/home/pi/picam/rec/");
+                            RemoteDirectoryInfo directory = ssh_session.ListDirectory("/home/pi/picam/rec/archive");
                             for(int file_list_count = 0; file_list_count < File_List.Length; file_list_count++)
                             {
                                 File_List[file_list_count] = "";
@@ -196,7 +196,7 @@ namespace PiCamClient
                                 
                             // Transfer Files
                             //sftp_result = ssh_session.PutFiles(@"D:\Downloads\Bla Bla Bla\Pokemon\*", "/home/pi/Pictures/", false, sftp_option);
-                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"C:\PiCam\records\", true, sftp_option);
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/archive/*.ts", @"C:\PiCam\records\", true, sftp_option);
                             transfer_status = false;
                             //sftp_result.Check();
 
@@ -215,7 +215,7 @@ namespace PiCamClient
                             execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
                             MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
                             if (File.Exists(@"C:\PiCam\records\last_preview.ts")) File.Delete(@"C:\PiCam\records\last_preview.ts");
-                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/preview.ts", @"C:\PiCam\records\", true, sftp_option);
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/archive/preview.ts", @"C:\PiCam\records\", true, sftp_option);
                             if (!File.Exists(@"C:\PiCam\records\last_preview.ts")) File.Move(@"C:\PiCam\records\preview.ts", @"C:\PiCam\records\last_preview.ts");
                             test_flag = true;
                             action = "none";
@@ -325,6 +325,8 @@ namespace PiCamClient
 
         private void Button_Test_Click(object sender, EventArgs e)
         {
+            Player_1.Ctlcontrols.stop();
+            Player_1.URL = "";
             action = "test";
         }
 
@@ -447,20 +449,6 @@ namespace PiCamClient
             Player_1.URL = Record_Dialog.FileName;
             Player_1.Ctlcontrols.play();
             Media_Player_Timer.Enabled = true;
-        }
-
-        private void Button_Pause_Click(object sender, EventArgs e)
-        {
-            if (Player_1.playState == WMPPlayState.wmppsPaused)
-            {
-                Player_1.Ctlcontrols.play();
-                Button_Pause.Text = "Pause";
-            }
-            else if (Player_1.playState == WMPPlayState.wmppsPlaying)
-            {
-                Player_1.Ctlcontrols.pause();
-                Button_Pause.Text = "Resume";
-            }
         }
 
         private void Media_Player_Timer_Tick(object sender, EventArgs e)

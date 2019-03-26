@@ -43,7 +43,6 @@
             this.Device_List_Refresh_Timer = new System.Windows.Forms.Timer(this.components);
             this.Record_Dialog = new System.Windows.Forms.OpenFileDialog();
             this.Button_Browse = new System.Windows.Forms.Button();
-            this.Button_Pause = new System.Windows.Forms.Button();
             this.Media_Player_Timer = new System.Windows.Forms.Timer(this.components);
             this.label_duration = new System.Windows.Forms.Label();
             this.Config_File_Dialog = new System.Windows.Forms.OpenFileDialog();
@@ -164,16 +163,6 @@
             this.Button_Browse.UseVisualStyleBackColor = true;
             this.Button_Browse.Click += new System.EventHandler(this.Button_Browse_Click);
             // 
-            // Button_Pause
-            // 
-            this.Button_Pause.Location = new System.Drawing.Point(94, 10);
-            this.Button_Pause.Name = "Button_Pause";
-            this.Button_Pause.Size = new System.Drawing.Size(75, 23);
-            this.Button_Pause.TabIndex = 15;
-            this.Button_Pause.Text = "Pause";
-            this.Button_Pause.UseVisualStyleBackColor = true;
-            this.Button_Pause.Click += new System.EventHandler(this.Button_Pause_Click);
-            // 
             // Media_Player_Timer
             // 
             this.Media_Player_Timer.Enabled = true;
@@ -183,11 +172,11 @@
             // label_duration
             // 
             this.label_duration.AutoSize = true;
-            this.label_duration.Location = new System.Drawing.Point(454, 21);
+            this.label_duration.Location = new System.Drawing.Point(653, 15);
             this.label_duration.Name = "label_duration";
-            this.label_duration.Size = new System.Drawing.Size(42, 13);
+            this.label_duration.Size = new System.Drawing.Size(72, 13);
             this.label_duration.TabIndex = 16;
-            this.label_duration.Text = "/ 00:00";
+            this.label_duration.Text = "00:00 / 00:00";
             // 
             // Config_File_Dialog
             // 
@@ -199,7 +188,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 445);
             this.Controls.Add(this.label_duration);
-            this.Controls.Add(this.Button_Pause);
             this.Controls.Add(this.Button_Browse);
             this.Controls.Add(this.Button_Setting);
             this.Controls.Add(this.Button_Disconnect);
@@ -235,7 +223,6 @@
         private System.Windows.Forms.Timer Device_List_Refresh_Timer;
         private System.Windows.Forms.OpenFileDialog Record_Dialog;
         private System.Windows.Forms.Button Button_Browse;
-        private System.Windows.Forms.Button Button_Pause;
         private System.Windows.Forms.Timer Media_Player_Timer;
         private System.Windows.Forms.Label label_duration;
         private System.Windows.Forms.OpenFileDialog Config_File_Dialog;
