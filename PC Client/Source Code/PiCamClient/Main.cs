@@ -53,15 +53,6 @@ namespace PiCamClient
         public Main()
         {
             InitializeComponent();
-
-            //var currentAssembly = Assembly.GetEntryAssembly();
-            //var currentDirectory = new FileInfo(currentAssembly.Location).DirectoryName;
-            //var libDirectory = new DirectoryInfo(Path.Combine(currentDirectory, "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
-            //VLC_Player.BeginInit();
-            //VLC_Player.VlcLibDirectory = libDirectory;
-            //((System.ComponentModel.ISupportInitialize)(this.VLC_Player)).EndInit();
-            //VLC_Player.EndInit();
-            //this.Controls.Add(VLC_Player);
         }
 
         private void Button_Transfer_Click(object sender, EventArgs e)
@@ -205,7 +196,7 @@ namespace PiCamClient
                                 
                             // Transfer Files
                             //sftp_result = ssh_session.PutFiles(@"D:\Downloads\Bla Bla Bla\Pokemon\*", "/home/pi/Pictures/", false, sftp_option);
-                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"\records\", true, sftp_option);
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/*.ts", @"C:\PiCam\records\", true, sftp_option);
                             transfer_status = false;
                             //sftp_result.Check();
 
@@ -223,8 +214,8 @@ namespace PiCamClient
                         case "test":
                             execute_result = ssh_session.ExecuteCommand("sudo sh /home/pi/Project49/Code/fivesec.sh");
                             MessageBox.Show("Test Performed", "Notification", MessageBoxButtons.OK);
-                            if (File.Exists(@"\records\preview.ts")) File.Delete(@"\records\preview.ts");
-                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/preview.ts", @"\records\", true, sftp_option);
+                            if (File.Exists(@"C:\PiCam\records\preview.ts")) File.Delete(@"C:\PiCam\records\preview.ts");
+                            sftp_result = ssh_session.GetFiles("/home/pi/picam/rec/preview.ts", @"C:\PiCam\records\", true, sftp_option);
                             test_flag = true;
                             action = "none";
                             break;
@@ -312,7 +303,7 @@ namespace PiCamClient
             if(test_flag)
             {
                 test_flag = false;
-                Player_1.URL = @"\records\preview.ts";
+                Player_1.URL = @"C:\PiCam\records\preview.ts";
                 Player_1.Ctlcontrols.play();
             }
         }
@@ -439,10 +430,8 @@ namespace PiCamClient
 
         public void Button_Browse_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) + @"\records\");
-            System.IO.Directory.CreateDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) + @"\records\");
-            //Record_Dialog.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase) + @"\records\";
-            //@"..\\records\";
+            if(!File.Exists(@"C:\PiCam\records"))  System.IO.Directory.CreateDirectory(@"C:\PiCam\records");
+            Record_Dialog.InitialDirectory = @"C:\PiCam\records\";
             Player_1.Ctlcontrols.stop();
             Media_Player_Timer.Enabled = false;
             Record_Dialog.Filter = "TS Files (*.ts)|*.ts|All Files (*.*)|*.*";

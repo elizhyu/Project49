@@ -41,7 +41,6 @@ D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\PiCamClient.pd
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\WinSCPnet.dll
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\Interop.WMPLib.dll
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\bin\Release\AxInterop.WMPLib.dll
-D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.csprojAssemblyReference.cache
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\Interop.WMPLib.dll
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\AxInterop.WMPLib.dll
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Release\PiCamClient.csproj.ResolveComReference.cache

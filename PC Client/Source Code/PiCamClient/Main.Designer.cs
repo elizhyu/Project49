@@ -191,7 +191,7 @@
             // 
             // Config_File_Dialog
             // 
-            this.Config_File_Dialog.FileName = "openFileDialog1";
+            this.Config_File_Dialog.FileName = "PiCam Recording File";
             // 
             // Main
             // 
