@@ -14,8 +14,6 @@ using WinSCP;
 using WMPLib;
 
 using PiCamClient.Properties;
-using Vlc.DotNet.Forms;
-using Vlc.DotNet.Core.Interops;
 
 namespace PiCamClient
 {
@@ -30,6 +28,7 @@ namespace PiCamClient
 
         string[] File_List = new string[50];
         bool file_list_state = false;
+        bool file_list_final = false;
 
         // Winscp Result Declaration
         CommandExecutionResult execute_result;
@@ -49,6 +48,10 @@ namespace PiCamClient
         bool transfer_status = false;
 
         Settings settings = new Settings();
+
+        // Sync Variables
+        string Start_Time_1 = "";
+        string Start_Time_2 = "";
 
         public Main()
         {
@@ -99,7 +102,9 @@ namespace PiCamClient
             // Media Player Initiation
             Player_1.Ctlenabled = true;
             Player_1.uiMode = "full";//"none";
-            
+            Player_2.Ctlenabled = true;
+            Player_2.uiMode = "full";//"none";
+
             // Transfer Progress List Settings
             Transfer_Progress_List.Groups.Add(Initiation_Group);
             Transfer_Progress_List.Groups.Add(Transfer_Group);
@@ -109,7 +114,7 @@ namespace PiCamClient
             Transfer_Progress_List.FullRowSelect = true;
             Transfer_Progress_List.Columns.Add(new ColumnHeader());
             Transfer_Progress_List.Columns[0].Text = "Name";
-            Transfer_Progress_List.Columns[0].Width = 170;
+            Transfer_Progress_List.Columns[0].Width = 250;
             Transfer_Progress_List.Columns.Add(new ColumnHeader());
             Transfer_Progress_List.Columns[1].Text = "Progress";
             Transfer_Progress_List.Columns[1].Width = 75;
@@ -123,9 +128,6 @@ namespace PiCamClient
 
         private void Main_Shown(object sender, EventArgs e)
         {
-            //Player_1.URL = @"D:\Project49\PiCam_LOGO.png";
-            //Player_1.URL = PiCamClient.Properties.Resources.PiCam_LOGO.png;
-            Player_1.Ctlcontrols.pause();
             Device_List_Refresh_Timer.Enabled = true;
         }
 
@@ -134,7 +136,6 @@ namespace PiCamClient
             status_check_stop_flag = false;
             await Task.Run((Action)status_check_function);
         }
-
 
         private void Button_Disconnect_Click(object sender, EventArgs e)
         {
@@ -174,7 +175,7 @@ namespace PiCamClient
                                 string[] filename_array = FileInfo.Name.Split('.');
 
                                 // File Type Matching
-                                if (filename_array[filename_array.Length - 1].ToLower() == "ts") // change to TS for PiCam!!!!!!!!!
+                                if (filename_array[filename_array.Length - 1].ToLower() == "ts")
                                 {
                                     int i = 0;
                                     string[] Byte_Units = { " B", " KB", " MB", " GB", "TB" };
@@ -185,7 +186,6 @@ namespace PiCamClient
                                         i++;
                                     }
                                     string filename = FileInfo.Name + "(" + FileSize + Byte_Units[i] + ")";
-                                    //File_List[file_count] = new string;
                                     File_List[file_count] = filename;
                                     file_count++;
                                 }
@@ -201,6 +201,7 @@ namespace PiCamClient
                             //sftp_result.Check();
 
                             MessageBox.Show("Transfer Done", "Notification", MessageBoxButtons.OK);
+                            file_list_final = true;
                             action = "none";
                             break;
                         case "record":
@@ -295,11 +296,19 @@ namespace PiCamClient
                 {
                     if (!(filename == ""))
                     {
-                        Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { filename, "Waiting" }, Transfer_Group));
+                        Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { filename, "Transferring" }, Transfer_Group));
                         Transfer_Progress_List.Items[Transfer_Progress_List.Items.Count - 1].EnsureVisible();
                     }
                 }
                 file_list_state = false;
+            }
+            if(file_list_final)
+            {
+                foreach (ListViewItem item in Transfer_Progress_List.Groups[1].Items)
+                {
+                    item.SubItems[1].Text = "Done";
+                }
+                file_list_final = false;
             }
             if(test_flag)
             {
@@ -456,6 +465,66 @@ namespace PiCamClient
             if (Player_1.playState == WMPPlayState.wmppsPlaying)
             {
                 label_duration.Text = Player_1.Ctlcontrols.currentPositionString + " / " + Player_1.currentMedia.durationString;
+            }
+            if (Player_2.playState == WMPPlayState.wmppsPlaying)
+            {
+                label_duration2.Text = Player_2.Ctlcontrols.currentPositionString + " / " + Player_2.currentMedia.durationString;
+            }
+        }
+
+        private void Button_Browse2_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(@"C:\PiCam\records")) System.IO.Directory.CreateDirectory(@"C:\PiCam\records");
+            Record_Dialog.InitialDirectory = @"C:\PiCam\records\";
+            Player_2.Ctlcontrols.stop();
+            Media_Player_Timer.Enabled = false;
+            Record_Dialog.Filter = "TS Files (*.ts)|*.ts|All Files (*.*)|*.*";
+            Record_Dialog.CheckFileExists = true;
+            Record_Dialog.Multiselect = false;
+            Player_2.settings.mute = false;
+            Player_2.settings.setMode("loop", true);
+            if (Record_Dialog.ShowDialog() != DialogResult.OK) return;
+            Player_2.URL = Record_Dialog.FileName;
+            Player_2.Ctlcontrols.play();
+            Media_Player_Timer.Enabled = true;
+        }
+
+        private void Button_Clear_Playback1_Click(object sender, EventArgs e)
+        {
+            Player_1.Ctlcontrols.stop();
+            Player_1.URL = "";
+        }
+
+        private void Button_Clear_Playback2_Click(object sender, EventArgs e)
+        {
+            Player_2.Ctlcontrols.stop();
+            Player_2.URL = "";
+        }
+
+        private void Button_Sync_Click(object sender, EventArgs e)
+        {
+            if ((Player_1.URL != "") && (Player_2.URL != ""))
+            {
+                // extract starting time from file name #1
+                string[] splited_name = Player_1.URL.Split('\\');
+                Start_Time_1 = splited_name[splited_name.Length - 1];
+                Start_Time_1 = Start_Time_1.Remove(Start_Time_1.Length - 3, 3);
+                // extract starting time from file name #2
+                splited_name = Player_2.URL.Split('\\');
+                Start_Time_2 = splited_name[splited_name.Length - 1];
+                Start_Time_2 = Start_Time_2.Remove(Start_Time_2.Length - 3, 3);
+        
+                if (string.Compare(Start_Time_1.Substring(0, 10), Start_Time_2.Substring(0, 10)) == 0)  // match date
+                {
+                    // extract time in hours, minutes and seconds
+                    Start_Time_1 = Start_Time_1.Substring(11);
+                    Start_Time_2 = Start_Time_2.Substring(11);
+                    
+                }
+                else  // if date unmatched
+                {
+                    MessageBox.Show("The footages selected are not able to be synced due to time difference.", "Sync Error", MessageBoxButtons.OK);
+                }
             }
         }
     }

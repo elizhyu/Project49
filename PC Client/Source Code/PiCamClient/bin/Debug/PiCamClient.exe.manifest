@@ -67,50 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PiCamClient.exe" size="404920">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PiCamClient.exe" size="895416">
       <assemblyIdentity name="PiCamClient" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SaT4wNwGXrOC9vmETg1q+4dLH6epEz6Nc+dXjL1Fcbw=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Vlc.DotNet.Core.dll" size="55296">
-      <assemblyIdentity name="Vlc.DotNet.Core" version="2.2.1.0" publicKeyToken="84529DA31F4EB963" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qBlKF35wtLhTFB+HSTfsc/FNhecXiloOirV53iQjIKU=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Vlc.DotNet.Core.Interops.dll" size="63488">
-      <assemblyIdentity name="Vlc.DotNet.Core.Interops" version="2.2.1.0" publicKeyToken="84529DA31F4EB963" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>69AMezJiZYd6Q3W0+FWN1ysFpe/xpXi7Oyw7vYXx0sw=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Vlc.DotNet.Forms.dll" size="23552">
-      <assemblyIdentity name="Vlc.DotNet.Forms" version="2.2.1.0" publicKeyToken="84529DA31F4EB963" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6NJInXdRH0Rm5Z8o3Tzt7N71jt1Qq4WU5grUW8EjWMU=</dsig:DigestValue>
+        <dsig:DigestValue>BqDEilJGZwGkNmYrsOzH83uJDsyPzUFEMbhxWx6wohM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
