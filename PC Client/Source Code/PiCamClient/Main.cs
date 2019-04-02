@@ -50,8 +50,17 @@ namespace PiCamClient
         Settings settings = new Settings();
 
         // Sync Variables
+        bool sync_flag = false;
         string Start_Time_1 = "";
         string Start_Time_2 = "";
+        int Hour_1 = 0;
+        int Hour_2 = 0;
+        int Min_1 = 0;
+        int Min_2 = 0;
+        int Sec_1 = 0;
+        int Sec_2 = 0;
+        double Start_Time_Num_1 = 0;
+        double Start_Time_Num_2 = 0;
 
         public Main()
         {
@@ -470,6 +479,15 @@ namespace PiCamClient
             {
                 label_duration2.Text = Player_2.Ctlcontrols.currentPositionString + " / " + Player_2.currentMedia.durationString;
             }
+            if(sync_flag)
+            {
+                if((Player_1.playState != WMPPlayState.wmppsPlaying) | (Player_2.playState != WMPPlayState.wmppsPlaying))
+                {
+                    Player_1.Ctlcontrols.stop();
+                    Player_2.Ctlcontrols.stop();
+                    sync_flag = false;
+                }
+            }
         }
 
         private void Button_Browse2_Click(object sender, EventArgs e)
@@ -503,6 +521,8 @@ namespace PiCamClient
 
         private void Button_Sync_Click(object sender, EventArgs e)
         {
+            Player_1.Ctlcontrols.pause();
+            Player_2.Ctlcontrols.pause();
             if ((Player_1.URL != "") && (Player_2.URL != ""))
             {
                 // extract starting time from file name #1
@@ -519,11 +539,53 @@ namespace PiCamClient
                     // extract time in hours, minutes and seconds
                     Start_Time_1 = Start_Time_1.Substring(11);
                     Start_Time_2 = Start_Time_2.Substring(11);
-                    
+                    Hour_1 = Convert.ToInt16(Start_Time_1.Substring(0, 2));
+                    Hour_2 = Convert.ToInt16(Start_Time_2.Substring(0, 2));
+                    Min_1 = Convert.ToInt16(Start_Time_1.Substring(3, 2));
+                    Min_2 = Convert.ToInt16(Start_Time_2.Substring(3, 2));
+                    Sec_1 = Convert.ToInt16(Start_Time_1.Substring(6, 2));
+                    Sec_2 = Convert.ToInt16(Start_Time_2.Substring(6, 2));
+                    Start_Time_Num_1 = Sec_1 + (Hour_1 * 60 + Min_1) * 60;
+                    Start_Time_Num_2 = Sec_2 + (Hour_2 * 60 + Min_2) * 60;
+                    if(Start_Time_Num_1 < Start_Time_Num_2)
+                    {
+                        if(Start_Time_Num_2 <= (Start_Time_Num_1 + Player_1.currentMedia.duration))
+                        {
+                            Player_1.settings.setMode("loop", false);
+                            Player_2.settings.setMode("loop", false);
+                            Player_1.Ctlcontrols.currentPosition = Start_Time_Num_2 - Start_Time_Num_1;
+                            Player_2.Ctlcontrols.currentPosition = 0;
+                            Player_1.Ctlcontrols.play();
+                            Player_2.Ctlcontrols.play();
+                            sync_flag = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("The footages selected are not able to be synced due to time difference.", "Sync Error", MessageBoxButtons.OK);
+                        }
+                    }
+                    else
+                    {
+                        if (Start_Time_Num_1 <= (Start_Time_Num_2 + Player_2.currentMedia.duration))
+                        {
+                            Player_1.settings.setMode("loop", false);
+                            Player_2.settings.setMode("loop", false);
+                            Player_1.Ctlcontrols.currentPosition = 0;
+                            Player_2.Ctlcontrols.currentPosition = Start_Time_Num_1 - Start_Time_Num_2;
+                            Player_1.Ctlcontrols.play();
+                            Player_2.Ctlcontrols.play();
+                            sync_flag = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("The footages selected are not able to be synced due to time difference.", "Sync Error", MessageBoxButtons.OK);
+                        }
+                    }
+                    //MessageBox.Show(Player_1.currentMedia.duration.ToString());
                 }
                 else  // if date unmatched
                 {
-                    MessageBox.Show("The footages selected are not able to be synced due to time difference.", "Sync Error", MessageBoxButtons.OK);
+                    MessageBox.Show("The footages selected are not able to be synced due to date difference.", "Sync Error", MessageBoxButtons.OK);
                 }
             }
         }

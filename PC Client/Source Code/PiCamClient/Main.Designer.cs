@@ -49,13 +49,13 @@
             this.Player_2 = new AxWMPLib.AxWindowsMediaPlayer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Button_Sync = new System.Windows.Forms.Button();
+            this.Button_Clear_Playback2 = new System.Windows.Forms.Button();
+            this.Button_Clear_Playback1 = new System.Windows.Forms.Button();
+            this.Button_Browse2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Button_Browse2 = new System.Windows.Forms.Button();
             this.label_duration2 = new System.Windows.Forms.Label();
-            this.Button_Clear_Playback1 = new System.Windows.Forms.Button();
-            this.Button_Clear_Playback2 = new System.Windows.Forms.Button();
-            this.Button_Sync = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Player_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player_2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -181,7 +181,7 @@
             // Media_Player_Timer
             // 
             this.Media_Player_Timer.Enabled = true;
-            this.Media_Player_Timer.Interval = 500;
+            this.Media_Player_Timer.Interval = 200;
             this.Media_Player_Timer.Tick += new System.EventHandler(this.Media_Player_Timer_Tick);
             // 
             // label_duration
@@ -237,6 +237,46 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Playback Control";
             // 
+            // Button_Sync
+            // 
+            this.Button_Sync.Location = new System.Drawing.Point(109, 113);
+            this.Button_Sync.Name = "Button_Sync";
+            this.Button_Sync.Size = new System.Drawing.Size(155, 23);
+            this.Button_Sync.TabIndex = 18;
+            this.Button_Sync.Text = "Sync Playback";
+            this.Button_Sync.UseVisualStyleBackColor = true;
+            this.Button_Sync.Click += new System.EventHandler(this.Button_Sync_Click);
+            // 
+            // Button_Clear_Playback2
+            // 
+            this.Button_Clear_Playback2.Location = new System.Drawing.Point(189, 71);
+            this.Button_Clear_Playback2.Name = "Button_Clear_Playback2";
+            this.Button_Clear_Playback2.Size = new System.Drawing.Size(154, 23);
+            this.Button_Clear_Playback2.TabIndex = 17;
+            this.Button_Clear_Playback2.Text = "Clear Playback #2";
+            this.Button_Clear_Playback2.UseVisualStyleBackColor = true;
+            this.Button_Clear_Playback2.Click += new System.EventHandler(this.Button_Clear_Playback2_Click);
+            // 
+            // Button_Clear_Playback1
+            // 
+            this.Button_Clear_Playback1.Location = new System.Drawing.Point(29, 71);
+            this.Button_Clear_Playback1.Name = "Button_Clear_Playback1";
+            this.Button_Clear_Playback1.Size = new System.Drawing.Size(154, 23);
+            this.Button_Clear_Playback1.TabIndex = 16;
+            this.Button_Clear_Playback1.Text = "Clear Playback #1";
+            this.Button_Clear_Playback1.UseVisualStyleBackColor = true;
+            this.Button_Clear_Playback1.Click += new System.EventHandler(this.Button_Clear_Playback1_Click);
+            // 
+            // Button_Browse2
+            // 
+            this.Button_Browse2.Location = new System.Drawing.Point(190, 31);
+            this.Button_Browse2.Name = "Button_Browse2";
+            this.Button_Browse2.Size = new System.Drawing.Size(155, 23);
+            this.Button_Browse2.TabIndex = 15;
+            this.Button_Browse2.Text = "Playback #2 Browse";
+            this.Button_Browse2.UseVisualStyleBackColor = true;
+            this.Button_Browse2.Click += new System.EventHandler(this.Button_Browse2_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.pictureBox1);
@@ -257,16 +297,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // Button_Browse2
-            // 
-            this.Button_Browse2.Location = new System.Drawing.Point(190, 31);
-            this.Button_Browse2.Name = "Button_Browse2";
-            this.Button_Browse2.Size = new System.Drawing.Size(155, 23);
-            this.Button_Browse2.TabIndex = 15;
-            this.Button_Browse2.Text = "Playback #2 Browse";
-            this.Button_Browse2.UseVisualStyleBackColor = true;
-            this.Button_Browse2.Click += new System.EventHandler(this.Button_Browse2_Click);
-            // 
             // label_duration2
             // 
             this.label_duration2.AutoSize = true;
@@ -275,36 +305,6 @@
             this.label_duration2.Size = new System.Drawing.Size(72, 13);
             this.label_duration2.TabIndex = 21;
             this.label_duration2.Text = "00:00 / 00:00";
-            // 
-            // Button_Clear_Playback1
-            // 
-            this.Button_Clear_Playback1.Location = new System.Drawing.Point(29, 71);
-            this.Button_Clear_Playback1.Name = "Button_Clear_Playback1";
-            this.Button_Clear_Playback1.Size = new System.Drawing.Size(154, 23);
-            this.Button_Clear_Playback1.TabIndex = 16;
-            this.Button_Clear_Playback1.Text = "Clear Playback #1";
-            this.Button_Clear_Playback1.UseVisualStyleBackColor = true;
-            this.Button_Clear_Playback1.Click += new System.EventHandler(this.Button_Clear_Playback1_Click);
-            // 
-            // Button_Clear_Playback2
-            // 
-            this.Button_Clear_Playback2.Location = new System.Drawing.Point(189, 71);
-            this.Button_Clear_Playback2.Name = "Button_Clear_Playback2";
-            this.Button_Clear_Playback2.Size = new System.Drawing.Size(154, 23);
-            this.Button_Clear_Playback2.TabIndex = 17;
-            this.Button_Clear_Playback2.Text = "Clear Playback #2";
-            this.Button_Clear_Playback2.UseVisualStyleBackColor = true;
-            this.Button_Clear_Playback2.Click += new System.EventHandler(this.Button_Clear_Playback2_Click);
-            // 
-            // Button_Sync
-            // 
-            this.Button_Sync.Location = new System.Drawing.Point(109, 113);
-            this.Button_Sync.Name = "Button_Sync";
-            this.Button_Sync.Size = new System.Drawing.Size(155, 23);
-            this.Button_Sync.TabIndex = 18;
-            this.Button_Sync.Text = "Sync Playback";
-            this.Button_Sync.UseVisualStyleBackColor = true;
-            this.Button_Sync.Click += new System.EventHandler(this.Button_Sync_Click);
             // 
             // Main
             // 
