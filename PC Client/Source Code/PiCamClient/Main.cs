@@ -40,12 +40,15 @@ namespace PiCamClient
         bool status_check_stop_flag = false;
         bool test_flag = false;
 
-        // 
+        // Status Check
         string status = "off";
         string action = "none";
         bool recording_status = false;
         int PiCam_Selection = -1;
         bool transfer_status = false;
+        string[] bat_info = new string[2];
+        string bat_per = "0";
+        string min_left = "0";
 
         Settings settings = new Settings();
 
@@ -240,6 +243,11 @@ namespace PiCamClient
                     execute_result = ssh_session.ExecuteCommand("sudo cat ~/picam/state/record");
                     if (execute_result.Output == "false") recording_status = false;
                     else if (execute_result.Output == "true") recording_status = true;
+                    execute_result = ssh_session.ExecuteCommand("sudo cat /home/pi/Project49/execution_data/battery_info.txt");
+                    bat_info = execute_result.Output.Split(' ');
+                    bat_per = bat_info[0];
+                    min_left = bat_info[1];
+                    //if (execute_result.Output.Split(' ') == )
                 }
                 ssh_session.Close();
                 status = "off";

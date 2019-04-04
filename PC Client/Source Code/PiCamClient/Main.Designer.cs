@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Button_Transfer = new System.Windows.Forms.Button();
             this.PiCam_List = new System.Windows.Forms.ComboBox();
-            this.Transfer_Progress_List = new System.Windows.Forms.ListView();
             this.Button_Connect = new System.Windows.Forms.Button();
             this.Status_Refresh_Timer = new System.Windows.Forms.Timer(this.components);
             this.Button_Record = new System.Windows.Forms.Button();
@@ -56,17 +55,31 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label_duration2 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.Transfer_Progress_List = new System.Windows.Forms.ListView();
+            this.Bat_Lvl_Label = new System.Windows.Forms.Label();
+            this.Time_Left_Label = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Connect_Status_Label = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Player_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player_2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // Button_Transfer
             // 
-            this.Button_Transfer.Location = new System.Drawing.Point(189, 78);
+            this.Button_Transfer.Location = new System.Drawing.Point(187, 46);
             this.Button_Transfer.Name = "Button_Transfer";
             this.Button_Transfer.Size = new System.Drawing.Size(75, 23);
             this.Button_Transfer.TabIndex = 1;
@@ -77,24 +90,15 @@
             // PiCam_List
             // 
             this.PiCam_List.FormattingEnabled = true;
-            this.PiCam_List.Location = new System.Drawing.Point(29, 42);
+            this.PiCam_List.Location = new System.Drawing.Point(27, 19);
             this.PiCam_List.Name = "PiCam_List";
             this.PiCam_List.Size = new System.Drawing.Size(154, 21);
             this.PiCam_List.TabIndex = 0;
             this.PiCam_List.SelectedIndexChanged += new System.EventHandler(this.PiCam_List_SelectedIndexChanged);
             // 
-            // Transfer_Progress_List
-            // 
-            this.Transfer_Progress_List.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.Transfer_Progress_List.Location = new System.Drawing.Point(398, 482);
-            this.Transfer_Progress_List.Name = "Transfer_Progress_List";
-            this.Transfer_Progress_List.Size = new System.Drawing.Size(325, 285);
-            this.Transfer_Progress_List.TabIndex = 6;
-            this.Transfer_Progress_List.UseCompatibleStateImageBehavior = false;
-            // 
             // Button_Connect
             // 
-            this.Button_Connect.Location = new System.Drawing.Point(189, 42);
+            this.Button_Connect.Location = new System.Drawing.Point(187, 18);
             this.Button_Connect.Name = "Button_Connect";
             this.Button_Connect.Size = new System.Drawing.Size(75, 23);
             this.Button_Connect.TabIndex = 7;
@@ -110,7 +114,7 @@
             // 
             // Button_Record
             // 
-            this.Button_Record.Location = new System.Drawing.Point(109, 78);
+            this.Button_Record.Location = new System.Drawing.Point(107, 46);
             this.Button_Record.Name = "Button_Record";
             this.Button_Record.Size = new System.Drawing.Size(74, 22);
             this.Button_Record.TabIndex = 10;
@@ -130,7 +134,7 @@
             // 
             // Button_Test
             // 
-            this.Button_Test.Location = new System.Drawing.Point(29, 79);
+            this.Button_Test.Location = new System.Drawing.Point(27, 46);
             this.Button_Test.Name = "Button_Test";
             this.Button_Test.Size = new System.Drawing.Size(74, 22);
             this.Button_Test.TabIndex = 11;
@@ -141,7 +145,7 @@
             // Button_Disconnect
             // 
             this.Button_Disconnect.Enabled = false;
-            this.Button_Disconnect.Location = new System.Drawing.Point(270, 42);
+            this.Button_Disconnect.Location = new System.Drawing.Point(268, 19);
             this.Button_Disconnect.Name = "Button_Disconnect";
             this.Button_Disconnect.Size = new System.Drawing.Size(75, 23);
             this.Button_Disconnect.TabIndex = 12;
@@ -151,7 +155,7 @@
             // 
             // Button_Setting
             // 
-            this.Button_Setting.Location = new System.Drawing.Point(270, 78);
+            this.Button_Setting.Location = new System.Drawing.Point(268, 46);
             this.Button_Setting.Name = "Button_Setting";
             this.Button_Setting.Size = new System.Drawing.Size(75, 23);
             this.Button_Setting.TabIndex = 13;
@@ -170,9 +174,9 @@
             // 
             // Button_Browse1
             // 
-            this.Button_Browse1.Location = new System.Drawing.Point(29, 31);
+            this.Button_Browse1.Location = new System.Drawing.Point(27, 19);
             this.Button_Browse1.Name = "Button_Browse1";
-            this.Button_Browse1.Size = new System.Drawing.Size(155, 23);
+            this.Button_Browse1.Size = new System.Drawing.Size(154, 23);
             this.Button_Browse1.TabIndex = 14;
             this.Button_Browse1.Text = "Playback #1 Browse";
             this.Button_Browse1.UseVisualStyleBackColor = true;
@@ -218,7 +222,7 @@
             this.groupBox1.Controls.Add(this.Button_Record);
             this.groupBox1.Location = new System.Drawing.Point(12, 482);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(380, 126);
+            this.groupBox1.Size = new System.Drawing.Size(380, 80);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Remote Control";
@@ -230,16 +234,16 @@
             this.groupBox2.Controls.Add(this.Button_Clear_Playback1);
             this.groupBox2.Controls.Add(this.Button_Browse2);
             this.groupBox2.Controls.Add(this.Button_Browse1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 614);
+            this.groupBox2.Location = new System.Drawing.Point(12, 568);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(380, 153);
+            this.groupBox2.Size = new System.Drawing.Size(380, 111);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Playback Control";
             // 
             // Button_Sync
             // 
-            this.Button_Sync.Location = new System.Drawing.Point(109, 113);
+            this.Button_Sync.Location = new System.Drawing.Point(107, 77);
             this.Button_Sync.Name = "Button_Sync";
             this.Button_Sync.Size = new System.Drawing.Size(155, 23);
             this.Button_Sync.TabIndex = 18;
@@ -249,7 +253,7 @@
             // 
             // Button_Clear_Playback2
             // 
-            this.Button_Clear_Playback2.Location = new System.Drawing.Point(189, 71);
+            this.Button_Clear_Playback2.Location = new System.Drawing.Point(187, 48);
             this.Button_Clear_Playback2.Name = "Button_Clear_Playback2";
             this.Button_Clear_Playback2.Size = new System.Drawing.Size(154, 23);
             this.Button_Clear_Playback2.TabIndex = 17;
@@ -259,7 +263,7 @@
             // 
             // Button_Clear_Playback1
             // 
-            this.Button_Clear_Playback1.Location = new System.Drawing.Point(29, 71);
+            this.Button_Clear_Playback1.Location = new System.Drawing.Point(27, 48);
             this.Button_Clear_Playback1.Name = "Button_Clear_Playback1";
             this.Button_Clear_Playback1.Size = new System.Drawing.Size(154, 23);
             this.Button_Clear_Playback1.TabIndex = 16;
@@ -269,7 +273,7 @@
             // 
             // Button_Browse2
             // 
-            this.Button_Browse2.Location = new System.Drawing.Point(190, 31);
+            this.Button_Browse2.Location = new System.Drawing.Point(187, 19);
             this.Button_Browse2.Name = "Button_Browse2";
             this.Button_Browse2.Size = new System.Drawing.Size(155, 23);
             this.Button_Browse2.TabIndex = 15;
@@ -306,17 +310,144 @@
             this.label_duration2.TabIndex = 21;
             this.label_duration2.Text = "00:00 / 00:00";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.Connect_Status_Label);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.Time_Left_Label);
+            this.groupBox4.Controls.Add(this.Bat_Lvl_Label);
+            this.groupBox4.Location = new System.Drawing.Point(12, 685);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(380, 82);
+            this.groupBox4.TabIndex = 22;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Status Monitor";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.Transfer_Progress_List);
+            this.groupBox5.Location = new System.Drawing.Point(398, 482);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(325, 285);
+            this.groupBox5.TabIndex = 23;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "File Transfer Stream Monitor";
+            // 
+            // Transfer_Progress_List
+            // 
+            this.Transfer_Progress_List.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.Transfer_Progress_List.Location = new System.Drawing.Point(7, 18);
+            this.Transfer_Progress_List.Name = "Transfer_Progress_List";
+            this.Transfer_Progress_List.Size = new System.Drawing.Size(312, 261);
+            this.Transfer_Progress_List.TabIndex = 7;
+            this.Transfer_Progress_List.UseCompatibleStateImageBehavior = false;
+            // 
+            // Bat_Lvl_Label
+            // 
+            this.Bat_Lvl_Label.AutoSize = true;
+            this.Bat_Lvl_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bat_Lvl_Label.ForeColor = System.Drawing.Color.SeaGreen;
+            this.Bat_Lvl_Label.Location = new System.Drawing.Point(104, 25);
+            this.Bat_Lvl_Label.Name = "Bat_Lvl_Label";
+            this.Bat_Lvl_Label.Size = new System.Drawing.Size(33, 13);
+            this.Bat_Lvl_Label.TabIndex = 0;
+            this.Bat_Lvl_Label.Text = "100%";
+            // 
+            // Time_Left_Label
+            // 
+            this.Time_Left_Label.AutoSize = true;
+            this.Time_Left_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Time_Left_Label.ForeColor = System.Drawing.Color.SeaGreen;
+            this.Time_Left_Label.Location = new System.Drawing.Point(104, 47);
+            this.Time_Left_Label.Name = "Time_Left_Label";
+            this.Time_Left_Label.Size = new System.Drawing.Size(47, 13);
+            this.Time_Left_Label.TabIndex = 1;
+            this.Time_Left_Label.Text = "1h30min";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Battery Level:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(42, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Time Left:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(184, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Connection Status:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(213, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "File Transfer:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(189, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Recording Status:";
+            // 
+            // Connect_Status_Label
+            // 
+            this.Connect_Status_Label.AutoSize = true;
+            this.Connect_Status_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Connect_Status_Label.ForeColor = System.Drawing.Color.Red;
+            this.Connect_Status_Label.Location = new System.Drawing.Point(287, 16);
+            this.Connect_Status_Label.Name = "Connect_Status_Label";
+            this.Connect_Status_Label.Size = new System.Drawing.Size(73, 13);
+            this.Connect_Status_Label.TabIndex = 7;
+            this.Connect_Status_Label.Text = "Disconnected";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(287, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Disconnected";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1452, 779);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label_duration2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Player_2);
             this.Controls.Add(this.label_duration);
-            this.Controls.Add(this.Transfer_Progress_List);
             this.Controls.Add(this.Player_1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -333,6 +464,9 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,7 +476,6 @@
         private System.Windows.Forms.Button Button_Transfer;
         private AxWMPLib.AxWindowsMediaPlayer Player_1;
         private System.Windows.Forms.ComboBox PiCam_List;
-        private System.Windows.Forms.ListView Transfer_Progress_List;
         private System.Windows.Forms.Button Button_Connect;
         private System.Windows.Forms.Timer Status_Refresh_Timer;
         private System.Windows.Forms.Button Button_Record;
@@ -365,6 +498,18 @@
         private System.Windows.Forms.Button Button_Clear_Playback1;
         private System.Windows.Forms.Button Button_Clear_Playback2;
         private System.Windows.Forms.Button Button_Sync;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ListView Transfer_Progress_List;
+        private System.Windows.Forms.Label Time_Left_Label;
+        private System.Windows.Forms.Label Bat_Lvl_Label;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label Connect_Status_Label;
     }
 }
 
