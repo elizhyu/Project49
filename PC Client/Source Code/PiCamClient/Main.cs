@@ -50,6 +50,7 @@ namespace PiCamClient
         string bat_per = "0";
         string min_left = "0";
         bool bat_update = false;
+        bool bat_warning_flag = false;
 
         Settings settings = new Settings();
 
@@ -127,10 +128,10 @@ namespace PiCamClient
             Transfer_Progress_List.FullRowSelect = true;
             Transfer_Progress_List.Columns.Add(new ColumnHeader());
             Transfer_Progress_List.Columns[0].Text = "Name";
-            Transfer_Progress_List.Columns[0].Width = 240;
+            Transfer_Progress_List.Columns[0].Width = 225;
             Transfer_Progress_List.Columns.Add(new ColumnHeader());
             Transfer_Progress_List.Columns[1].Text = "Progress";
-            Transfer_Progress_List.Columns[1].Width = 65;
+            Transfer_Progress_List.Columns[1].Width = 80;
             //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Remote Device Access", "Unavailable" }, Initiation_Group));
             //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "File Tranfer Stream", "Stopped" }, Initiation_Group));
             //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
@@ -377,13 +378,23 @@ namespace PiCamClient
                         Bat_Warn_Label.Text = "Extremely Low";
                         Bat_Lvl_Label.ForeColor = Color.Red;
                         Time_Left_Label.ForeColor = Color.Red;
-                        if(Convert.ToInt16(bat_per) < 10)
+                        if (Convert.ToInt16(bat_per) < 10)
                         {
-                            MessageBox.Show("Battery is almost gone! Please stop recording immediately to save footage!", "Battery Low Warning", MessageBoxButtons.OK);
+                            if (!bat_warning_flag)
+                            {
+                                bat_warning_flag = true;
+                                MessageBox.Show("Battery is almost gone! Please stop recording immediately to save footage!", "Battery Low Warning", MessageBoxButtons.OK);
+
+                            }
+                        }
+                        else
+                        {
+                            bat_warning_flag = false;
                         }
                     }
                     else
                     {
+                        bat_warning_flag = false;
                         Bat_Warn_Label.Text = "Battery Low";
                         Bat_Lvl_Label.ForeColor = Color.Orange;
                         Time_Left_Label.ForeColor = Color.Orange;
@@ -391,6 +402,7 @@ namespace PiCamClient
                 }
                 else
                 {
+                    bat_warning_flag = false;
                     Bat_Warn_Label.Text = "";
                     Bat_Lvl_Label.ForeColor = Color.SeaGreen;
                     Time_Left_Label.ForeColor = Color.SeaGreen;
