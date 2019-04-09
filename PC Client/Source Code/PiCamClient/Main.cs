@@ -49,6 +49,7 @@ namespace PiCamClient
         string[] bat_info = new string[2];
         string bat_per = "0";
         string min_left = "0";
+        bool bat_update = false;
 
         Settings settings = new Settings();
 
@@ -118,21 +119,21 @@ namespace PiCamClient
             Player_2.uiMode = "full";//"none";
 
             // Transfer Progress List Settings
-            Transfer_Progress_List.Groups.Add(Initiation_Group);
-            Transfer_Progress_List.Groups.Add(Transfer_Group);
+            //Transfer_Progress_List.Groups.Add(Initiation_Group);
+            //Transfer_Progress_List.Groups.Add(Transfer_Group);
             Transfer_Progress_List.Sorting = SortOrder.None;
             Transfer_Progress_List.View = View.Details;
             Transfer_Progress_List.AllowColumnReorder = false;
             Transfer_Progress_List.FullRowSelect = true;
             Transfer_Progress_List.Columns.Add(new ColumnHeader());
             Transfer_Progress_List.Columns[0].Text = "Name";
-            Transfer_Progress_List.Columns[0].Width = 250;
+            Transfer_Progress_List.Columns[0].Width = 240;
             Transfer_Progress_List.Columns.Add(new ColumnHeader());
             Transfer_Progress_List.Columns[1].Text = "Progress";
-            Transfer_Progress_List.Columns[1].Width = 75;
-            Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Remote Device Access", "Unavailable" }, Initiation_Group));
-            Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "File Tranfer Stream", "Stopped" }, Initiation_Group));
-            Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
+            Transfer_Progress_List.Columns[1].Width = 65;
+            //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Remote Device Access", "Unavailable" }, Initiation_Group));
+            //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "File Tranfer Stream", "Stopped" }, Initiation_Group));
+            //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
 
             sftp_option.TransferMode = TransferMode.Binary;
             Device_List_Refresh_Timer.Enabled = true;
@@ -247,6 +248,7 @@ namespace PiCamClient
                     bat_info = execute_result.Output.Split(' ');
                     bat_per = bat_info[0];
                     min_left = bat_info[1];
+                    bat_update = true;
                     //if (execute_result.Output.Split(' ') == )
                 }
                 ssh_session.Close();
@@ -266,46 +268,65 @@ namespace PiCamClient
                 case "off":
                     Button_Connect.Enabled = true;
                     Button_Disconnect.Enabled = false;
-                    Transfer_Progress_List.Items[0].SubItems[1].Text = "Unavailable";
+                    Connect_Status_Label.Text = "Unavailable";
+                    Connect_Status_Label.ForeColor = Color.Red;
+                    //Transfer_Progress_List.Items[0].SubItems[1].Text = "Unavailable";
+                    Bat_Lvl_Label.Text = "Unavailable";
+                    Bat_Lvl_Label.ForeColor = Color.Red;
+                    Time_Left_Label.Text = "Unavailable";
+                    Time_Left_Label.ForeColor = Color.Red;
+                    Bat_Warn_Label.Text = "   ";
                     break;
                 case "ing":
                     Button_Connect.Enabled = false;
                     Button_Disconnect.Enabled = false;
-                    Transfer_Progress_List.Items[0].SubItems[1].Text = "Establishing";
+                    Connect_Status_Label.Text = "Establishing";
+                    Connect_Status_Label.ForeColor = Color.Orange;
+                    //Transfer_Progress_List.Items[0].SubItems[1].Text = "Establishing";
                     break;
                 case "on":
                     Button_Connect.Enabled = false;
                     Button_Disconnect.Enabled = true;
-                    Transfer_Progress_List.Items[0].SubItems[1].Text = "Connected";
+                    Connect_Status_Label.Text = "Connected";
+                    Connect_Status_Label.ForeColor = Color.SeaGreen;
+                    //Transfer_Progress_List.Items[0].SubItems[1].Text = "Connected";
                     break;
             }
             if (recording_status)
             {
                 if (action == "stop") Button_Record.Enabled = false;
                 else Button_Record.Enabled = true;
-                Transfer_Progress_List.Items[2].SubItems[1].Text = "Recording";
+                Record_Status_Label.Text = "Recording";
+                Record_Status_Label.ForeColor = Color.SeaGreen;
+                //Transfer_Progress_List.Items[2].SubItems[1].Text = "Recording";
                 Button_Record.Text = "Stop";
             }
             else
             {
                 if (action == "record") Button_Record.Enabled = false;
                 else Button_Record.Enabled = true;
-                Transfer_Progress_List.Items[2].SubItems[1].Text = "Stopped";
+                Record_Status_Label.Text = "Stopped";
+                Record_Status_Label.ForeColor = Color.Red;
+                //Transfer_Progress_List.Items[2].SubItems[1].Text = "Stopped";
                 Button_Record.Text = "Record";
             }
             if(transfer_status)
             {
                 Button_Transfer.Enabled = false;
-                Transfer_Progress_List.Items[1].SubItems[1].Text = "In Progress";
+                File_Transfer_Status_Label.Text = "In Progress";
+                File_Transfer_Status_Label.ForeColor = Color.SeaGreen;
+                //Transfer_Progress_List.Items[1].SubItems[1].Text = "In Progress";
             }
             else
             {
                 Button_Transfer.Enabled = true;
-                Transfer_Progress_List.Items[1].SubItems[1].Text = "Down";
+                File_Transfer_Status_Label.Text = "Down";
+                File_Transfer_Status_Label.ForeColor = Color.Red;
+                //Transfer_Progress_List.Items[1].SubItems[1].Text = "Down";
             }
             if(file_list_state)
             {
-                foreach(ListViewItem item in Transfer_Progress_List.Groups[1].Items)
+                foreach(ListViewItem item in Transfer_Progress_List.Items)
                 {
                     item.Remove();
                 }
@@ -313,7 +334,7 @@ namespace PiCamClient
                 {
                     if (!(filename == ""))
                     {
-                        Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { filename, "Transferring" }, Transfer_Group));
+                        Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { filename, "Transferring" }));
                         Transfer_Progress_List.Items[Transfer_Progress_List.Items.Count - 1].EnsureVisible();
                     }
                 }
@@ -321,7 +342,7 @@ namespace PiCamClient
             }
             if(file_list_final)
             {
-                foreach (ListViewItem item in Transfer_Progress_List.Groups[1].Items)
+                foreach (ListViewItem item in Transfer_Progress_List.Items)
                 {
                     item.SubItems[1].Text = "Done";
                 }
@@ -335,6 +356,45 @@ namespace PiCamClient
                 Player_1.URL = @"C:\PiCam\records\last_preview.ts";
                 Player_1.Ctlcontrols.play();
                 Media_Player_Timer.Enabled = true;
+            }
+            if(bat_update)
+            {
+                bat_update = false;
+                if(Convert.ToInt16(min_left) >= 60)
+                {
+                    Time_Left_Label.Text = (Convert.ToInt16(min_left) / 60).ToString() + "h" + (Convert.ToInt16(min_left) % 60).ToString() + "min";
+                }
+                else
+                {
+                    Time_Left_Label.Text = min_left + "min";
+                }
+
+                Bat_Lvl_Label.Text = bat_per + "%";
+                if(Convert.ToInt16(bat_per) < 50)
+                {
+                    if(Convert.ToInt16(bat_per) < 20)
+                    {
+                        Bat_Warn_Label.Text = "Extremely Low";
+                        Bat_Lvl_Label.ForeColor = Color.Red;
+                        Time_Left_Label.ForeColor = Color.Red;
+                        if(Convert.ToInt16(bat_per) < 10)
+                        {
+                            MessageBox.Show("Battery is almost gone! Please stop recording immediately to save footage!", "Battery Low Warning", MessageBoxButtons.OK);
+                        }
+                    }
+                    else
+                    {
+                        Bat_Warn_Label.Text = "Battery Low";
+                        Bat_Lvl_Label.ForeColor = Color.Orange;
+                        Time_Left_Label.ForeColor = Color.Orange;
+                    }
+                }
+                else
+                {
+                    Bat_Warn_Label.Text = "";
+                    Bat_Lvl_Label.ForeColor = Color.SeaGreen;
+                    Time_Left_Label.ForeColor = Color.SeaGreen;
+                }
             }
         }
 

@@ -56,17 +56,19 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label_duration2 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.File_Transfer_Status_Label = new System.Windows.Forms.Label();
+            this.Connect_Status_Label = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Time_Left_Label = new System.Windows.Forms.Label();
+            this.Bat_Lvl_Label = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Transfer_Progress_List = new System.Windows.Forms.ListView();
-            this.Bat_Lvl_Label = new System.Windows.Forms.Label();
-            this.Time_Left_Label = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.Connect_Status_Label = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.Record_Status_Label = new System.Windows.Forms.Label();
+            this.Bat_Warn_Label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Player_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player_2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -312,7 +314,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.Bat_Warn_Label);
+            this.groupBox4.Controls.Add(this.Record_Status_Label);
+            this.groupBox4.Controls.Add(this.File_Transfer_Status_Label);
             this.groupBox4.Controls.Add(this.Connect_Status_Label);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label4);
@@ -327,6 +331,95 @@
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Status Monitor";
+            // 
+            // File_Transfer_Status_Label
+            // 
+            this.File_Transfer_Status_Label.AutoSize = true;
+            this.File_Transfer_Status_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.File_Transfer_Status_Label.ForeColor = System.Drawing.Color.Red;
+            this.File_Transfer_Status_Label.Location = new System.Drawing.Point(287, 38);
+            this.File_Transfer_Status_Label.Name = "File_Transfer_Status_Label";
+            this.File_Transfer_Status_Label.Size = new System.Drawing.Size(35, 13);
+            this.File_Transfer_Status_Label.TabIndex = 8;
+            this.File_Transfer_Status_Label.Text = "Down";
+            // 
+            // Connect_Status_Label
+            // 
+            this.Connect_Status_Label.AutoSize = true;
+            this.Connect_Status_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Connect_Status_Label.ForeColor = System.Drawing.Color.Red;
+            this.Connect_Status_Label.Location = new System.Drawing.Point(287, 16);
+            this.Connect_Status_Label.Name = "Connect_Status_Label";
+            this.Connect_Status_Label.Size = new System.Drawing.Size(73, 13);
+            this.Connect_Status_Label.TabIndex = 7;
+            this.Connect_Status_Label.Text = "Disconnected";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(189, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Recording Status:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(213, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "File Transfer:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(184, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Connection Status:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(42, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Time Left:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Battery Level:";
+            // 
+            // Time_Left_Label
+            // 
+            this.Time_Left_Label.AutoSize = true;
+            this.Time_Left_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Time_Left_Label.ForeColor = System.Drawing.Color.Red;
+            this.Time_Left_Label.Location = new System.Drawing.Point(104, 60);
+            this.Time_Left_Label.Name = "Time_Left_Label";
+            this.Time_Left_Label.Size = new System.Drawing.Size(63, 13);
+            this.Time_Left_Label.TabIndex = 1;
+            this.Time_Left_Label.Text = "Unavailable";
+            // 
+            // Bat_Lvl_Label
+            // 
+            this.Bat_Lvl_Label.AutoSize = true;
+            this.Bat_Lvl_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bat_Lvl_Label.ForeColor = System.Drawing.Color.Red;
+            this.Bat_Lvl_Label.Location = new System.Drawing.Point(104, 25);
+            this.Bat_Lvl_Label.Name = "Bat_Lvl_Label";
+            this.Bat_Lvl_Label.Size = new System.Drawing.Size(63, 13);
+            this.Bat_Lvl_Label.TabIndex = 0;
+            this.Bat_Lvl_Label.Text = "Unavailable";
             // 
             // groupBox5
             // 
@@ -347,94 +440,27 @@
             this.Transfer_Progress_List.TabIndex = 7;
             this.Transfer_Progress_List.UseCompatibleStateImageBehavior = false;
             // 
-            // Bat_Lvl_Label
+            // Record_Status_Label
             // 
-            this.Bat_Lvl_Label.AutoSize = true;
-            this.Bat_Lvl_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bat_Lvl_Label.ForeColor = System.Drawing.Color.SeaGreen;
-            this.Bat_Lvl_Label.Location = new System.Drawing.Point(104, 25);
-            this.Bat_Lvl_Label.Name = "Bat_Lvl_Label";
-            this.Bat_Lvl_Label.Size = new System.Drawing.Size(33, 13);
-            this.Bat_Lvl_Label.TabIndex = 0;
-            this.Bat_Lvl_Label.Text = "100%";
+            this.Record_Status_Label.AutoSize = true;
+            this.Record_Status_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Record_Status_Label.ForeColor = System.Drawing.Color.Red;
+            this.Record_Status_Label.Location = new System.Drawing.Point(287, 60);
+            this.Record_Status_Label.Name = "Record_Status_Label";
+            this.Record_Status_Label.Size = new System.Drawing.Size(47, 13);
+            this.Record_Status_Label.TabIndex = 9;
+            this.Record_Status_Label.Text = "Stopped";
             // 
-            // Time_Left_Label
+            // Bat_Warn_Label
             // 
-            this.Time_Left_Label.AutoSize = true;
-            this.Time_Left_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Time_Left_Label.ForeColor = System.Drawing.Color.SeaGreen;
-            this.Time_Left_Label.Location = new System.Drawing.Point(104, 47);
-            this.Time_Left_Label.Name = "Time_Left_Label";
-            this.Time_Left_Label.Size = new System.Drawing.Size(47, 13);
-            this.Time_Left_Label.TabIndex = 1;
-            this.Time_Left_Label.Text = "1h30min";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Battery Level:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Time Left:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(184, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Connection Status:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(213, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "File Transfer:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(189, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Recording Status:";
-            // 
-            // Connect_Status_Label
-            // 
-            this.Connect_Status_Label.AutoSize = true;
-            this.Connect_Status_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Connect_Status_Label.ForeColor = System.Drawing.Color.Red;
-            this.Connect_Status_Label.Location = new System.Drawing.Point(287, 16);
-            this.Connect_Status_Label.Name = "Connect_Status_Label";
-            this.Connect_Status_Label.Size = new System.Drawing.Size(73, 13);
-            this.Connect_Status_Label.TabIndex = 7;
-            this.Connect_Status_Label.Text = "Disconnected";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(287, 38);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Disconnected";
+            this.Bat_Warn_Label.AutoSize = true;
+            this.Bat_Warn_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bat_Warn_Label.ForeColor = System.Drawing.Color.Red;
+            this.Bat_Warn_Label.Location = new System.Drawing.Point(104, 42);
+            this.Bat_Warn_Label.Name = "Bat_Warn_Label";
+            this.Bat_Warn_Label.Size = new System.Drawing.Size(16, 13);
+            this.Bat_Warn_Label.TabIndex = 10;
+            this.Bat_Warn_Label.Text = "   ";
             // 
             // Main
             // 
@@ -508,8 +534,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label File_Transfer_Status_Label;
         private System.Windows.Forms.Label Connect_Status_Label;
+        private System.Windows.Forms.Label Record_Status_Label;
+        private System.Windows.Forms.Label Bat_Warn_Label;
     }
 }
 
