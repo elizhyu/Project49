@@ -26,7 +26,7 @@ namespace PiCamClient
         ListViewGroup Initiation_Group = new ListViewGroup("Live Monitor");
         ListViewGroup Transfer_Group = new ListViewGroup("File Transfer");
 
-        string[] File_List = new string[50];
+        string[] File_List = new string[100];
         bool file_list_state = false;
         bool file_list_final = false;
 
@@ -53,6 +53,7 @@ namespace PiCamClient
         bool bat_warning_flag = false;
 
         Settings settings = new Settings();
+        AboutBox about = new AboutBox();
 
         // Sync Variables
         bool sync_flag = false;
@@ -668,6 +669,11 @@ namespace PiCamClient
                     MessageBox.Show("The footages selected are not able to be synced due to date difference.", "Sync Error", MessageBoxButtons.OK);
                 }
             }
+        }
+
+        private void Button_About_Click(object sender, EventArgs e)
+        {
+            about.Show();
         }
     }
 }

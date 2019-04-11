@@ -56,6 +56,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label_duration2 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.Bat_Warn_Label = new System.Windows.Forms.Label();
+            this.Record_Status_Label = new System.Windows.Forms.Label();
             this.File_Transfer_Status_Label = new System.Windows.Forms.Label();
             this.Connect_Status_Label = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -67,8 +69,7 @@
             this.Bat_Lvl_Label = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Transfer_Progress_List = new System.Windows.Forms.ListView();
-            this.Record_Status_Label = new System.Windows.Forms.Label();
-            this.Bat_Warn_Label = new System.Windows.Forms.Label();
+            this.Button_About = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Player_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player_2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -231,6 +232,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Button_About);
             this.groupBox2.Controls.Add(this.Button_Sync);
             this.groupBox2.Controls.Add(this.Button_Clear_Playback2);
             this.groupBox2.Controls.Add(this.Button_Clear_Playback1);
@@ -245,7 +247,7 @@
             // 
             // Button_Sync
             // 
-            this.Button_Sync.Location = new System.Drawing.Point(107, 77);
+            this.Button_Sync.Location = new System.Drawing.Point(27, 77);
             this.Button_Sync.Name = "Button_Sync";
             this.Button_Sync.Size = new System.Drawing.Size(155, 23);
             this.Button_Sync.TabIndex = 18;
@@ -331,6 +333,28 @@
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Status Monitor";
+            // 
+            // Bat_Warn_Label
+            // 
+            this.Bat_Warn_Label.AutoSize = true;
+            this.Bat_Warn_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bat_Warn_Label.ForeColor = System.Drawing.Color.Red;
+            this.Bat_Warn_Label.Location = new System.Drawing.Point(104, 42);
+            this.Bat_Warn_Label.Name = "Bat_Warn_Label";
+            this.Bat_Warn_Label.Size = new System.Drawing.Size(16, 13);
+            this.Bat_Warn_Label.TabIndex = 10;
+            this.Bat_Warn_Label.Text = "   ";
+            // 
+            // Record_Status_Label
+            // 
+            this.Record_Status_Label.AutoSize = true;
+            this.Record_Status_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Record_Status_Label.ForeColor = System.Drawing.Color.Red;
+            this.Record_Status_Label.Location = new System.Drawing.Point(287, 60);
+            this.Record_Status_Label.Name = "Record_Status_Label";
+            this.Record_Status_Label.Size = new System.Drawing.Size(47, 13);
+            this.Record_Status_Label.TabIndex = 9;
+            this.Record_Status_Label.Text = "Stopped";
             // 
             // File_Transfer_Status_Label
             // 
@@ -440,27 +464,15 @@
             this.Transfer_Progress_List.TabIndex = 7;
             this.Transfer_Progress_List.UseCompatibleStateImageBehavior = false;
             // 
-            // Record_Status_Label
+            // Button_About
             // 
-            this.Record_Status_Label.AutoSize = true;
-            this.Record_Status_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Record_Status_Label.ForeColor = System.Drawing.Color.Red;
-            this.Record_Status_Label.Location = new System.Drawing.Point(287, 60);
-            this.Record_Status_Label.Name = "Record_Status_Label";
-            this.Record_Status_Label.Size = new System.Drawing.Size(47, 13);
-            this.Record_Status_Label.TabIndex = 9;
-            this.Record_Status_Label.Text = "Stopped";
-            // 
-            // Bat_Warn_Label
-            // 
-            this.Bat_Warn_Label.AutoSize = true;
-            this.Bat_Warn_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bat_Warn_Label.ForeColor = System.Drawing.Color.Red;
-            this.Bat_Warn_Label.Location = new System.Drawing.Point(104, 42);
-            this.Bat_Warn_Label.Name = "Bat_Warn_Label";
-            this.Bat_Warn_Label.Size = new System.Drawing.Size(16, 13);
-            this.Bat_Warn_Label.TabIndex = 10;
-            this.Bat_Warn_Label.Text = "   ";
+            this.Button_About.Location = new System.Drawing.Point(229, 77);
+            this.Button_About.Name = "Button_About";
+            this.Button_About.Size = new System.Drawing.Size(75, 23);
+            this.Button_About.TabIndex = 19;
+            this.Button_About.Text = "About";
+            this.Button_About.UseVisualStyleBackColor = true;
+            this.Button_About.Click += new System.EventHandler(this.Button_About_Click);
             // 
             // Main
             // 
@@ -538,6 +550,7 @@
         private System.Windows.Forms.Label Connect_Status_Label;
         private System.Windows.Forms.Label Record_Status_Label;
         private System.Windows.Forms.Label Bat_Warn_Label;
+        private System.Windows.Forms.Button Button_About;
     }
 }
 

@@ -79,3 +79,4 @@ D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Debug\PiCamClient.appl
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Debug\PiCamClient.csproj.CopyComplete
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Debug\PiCamClient.exe
 D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Debug\PiCamClient.pdb
+D:\GitHub\Project49\PC Client\Source Code\PiCamClient\obj\Debug\PiCamClient.AboutBox.resources
