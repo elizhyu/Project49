@@ -38,18 +38,15 @@ void Init_Ports(void)
 
 	wiringPiISR(shutdown_button, INT_EDGE_FALLING, shutdown);//shuts down 	the Pi when the the button is pressed (FALLING EDGE)
 
-	wiringPiISR(stream_button, INT_EDGE_FALLING, test_record);
+	wiringPiISR(stream_button, INT_EDGE_FALLING, test_record);	//runs the preview script
 }
 
 void start_up_lights(void)
   {
-	//turn off lights first
-
-	digitalWrite (Green_LED, 1) ;	// Off
-	digitalWrite (Yellow_LED, 1) ;	// Off
-	digitalWrite (Red_LED, 1) ;	// Off
-	digitalWrite (Blue_LED, 1) ;	// Off
-	
+    digitalWrite (Green_LED,1);
+    digitalWrite (Red_LED,1);
+    digitalWrite (Yellow_LED,1);
+    digitalWrite (Blue_LED,1);
     digitalWrite (Green_LED, 0) ;	// On
     delay (100) ;               	// 100 mS
     digitalWrite (Green_LED, 1) ;	// Off
@@ -90,7 +87,7 @@ void Init_PiCam(void)
 	chdir("/home/pi/picam");	//change directory to go to picam
 	
 	//starts up picam - this version does not do any error checking
-	system("./picam --time --rotation 270  --alsadev hw:1,0 -w 1280 -h 720 -v 0 -f 24 --shutter 20833 &");	
+	system("./picam --time --rotation 180  --alsadev hw:1,0 --volume 2 -w 1280 -h 720 -v 3000000 --iso 800 --recordbuf 1 -f 24 &");// --vfr --minfps 24 --maxfps 24 --shutter 20000 &");		
 }
 
 void Updated_Init_PiCam(void)
@@ -111,11 +108,11 @@ void Updated_Init_PiCam(void)
 
 	//while everything it not initalized....
 	while(goodToGo==0){
-		
-		system("sudo pkill picam");	//just in case it's running
-		delay(100);	//delay for 100 ms to ensure that it's closed it
 
-		chdir("/home/pi/picam");
+		system("sudo pkill picam");
+		delay(100);
+
+		chdir("/home/pi/picam");	//NEED TO CONFIRM
 
 
 		//Initalizes picam software

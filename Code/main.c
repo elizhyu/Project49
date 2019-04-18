@@ -10,6 +10,7 @@ bool wifi_found = false; //flag for checking network activity
 #include "Init.h"	//the intialize GPIO 
 #include "RecordStream.h"	//the recording functions and sets up the interrupts for the pushbuttons
 #include "NetworkChecker.h"
+#include "BMS.h"
 
 
 int main(void)
@@ -23,6 +24,9 @@ int main(void)
 	int counter = 0;
 	int Networkcounter = 0;
 	int wifi_check_freq = 20000;
+	uint min_timer = 0;
+	int battery_percent;
+
 	while(1)
 	{
 		if (counter == wifi_check_freq)
@@ -32,11 +36,41 @@ int main(void)
 			Networkcounter ++;
 
 			if (wifi_found)
-				wifi_check_freq = 35000;
+				wifi_check_freq = 3500;
 			else
-				wifi_check_freq = 20000;
+				wifi_check_freq = 2000;
 		}
 		set_rec_LED();
-		counter++;		
+		counter++;	
+
+		//timer for checking battery status and restarting recording every ~minute
+		if(min_timer >= 35000)
+		{
+			min_timer = 0;
+			battery_percent = battery_stats();
+			if(battery_percent < 5)
+			{
+				printf("Warning: battery is low! System shutdown in 30 seconds!\n");
+
+				for(int i=0; i<30; i++)
+				{
+					digitalWrite(Green_LED,0);
+					digitalWrite(Yellow_LED,1);
+
+					delay(500);
+
+					digitalWrite(Green_LED,1);
+					digitalWrite(Yellow_LED,0);
+
+					delay(500);
+				}
+				shutdown();
+			}
+
+			record_toggle(); //checks if recording, stops and restarts recoring if true -> prevents recording from stopping
+		}	
+		delay(1);
+		min_timer++;
+
 	}
 }

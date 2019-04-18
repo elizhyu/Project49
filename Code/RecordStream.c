@@ -25,7 +25,6 @@ bool is_recording(void)
 		return false;
 	}
 
-
 }
 
 void set_rec_LED(void)
@@ -34,8 +33,7 @@ void set_rec_LED(void)
 		digitalWrite(record_LED,0);
 		digitalWrite(software_status_LED, 1);
 	}
-
-	else {
+	else{
 		digitalWrite(record_LED,1);
 		digitalWrite(software_status_LED, 0);
 	}
@@ -116,5 +114,23 @@ void test_record(void)
 	system("/home/pi/Project49/Code/fivesec.sh");
 	//might not need
 	digitalWrite(stream_LED,1);
+}
+
+void record_toggle(void)
+{
+	if(is_recording() == true)
+	{
+		FILE *rec_file;	//creates the pinter used to read
+		rec_file = fopen("/home/pi/picam/hooks/stop_record", "w");	//opens the file and clears content
+		fclose(rec_file);	//closes the file
+
+		delay(10);
+
+		while(is_recording() == true) //wait to restart recording
+			delay(10);
+
+		rec_file = fopen("/home/pi/picam/hooks/start_record", "w"); //opens the file and clears content
+		fclose(rec_file);//closes the file
+	}
 }
 
