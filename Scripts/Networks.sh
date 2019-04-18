@@ -10,8 +10,8 @@ update_config=1
 country=US
 
 network={
-	ssid="where_is_davin"
-	psk="not_here"
+	ssid="prism_headset"
+	psk=""
 	key_mgmt=WPA-PSK
 }
 
