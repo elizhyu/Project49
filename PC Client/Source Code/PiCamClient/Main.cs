@@ -121,8 +121,6 @@ namespace PiCamClient
             Player_2.uiMode = "full";//"none";
 
             // Transfer Progress List Settings
-            //Transfer_Progress_List.Groups.Add(Initiation_Group);
-            //Transfer_Progress_List.Groups.Add(Transfer_Group);
             Transfer_Progress_List.Sorting = SortOrder.None;
             Transfer_Progress_List.View = View.Details;
             Transfer_Progress_List.AllowColumnReorder = false;
@@ -133,9 +131,6 @@ namespace PiCamClient
             Transfer_Progress_List.Columns.Add(new ColumnHeader());
             Transfer_Progress_List.Columns[1].Text = "Progress";
             Transfer_Progress_List.Columns[1].Width = 80;
-            //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Remote Device Access", "Unavailable" }, Initiation_Group));
-            //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "File Tranfer Stream", "Stopped" }, Initiation_Group));
-            //Transfer_Progress_List.Items.Add(new ListViewItem(new string[] { "Recording Status", "Stopped" }, Initiation_Group));
 
             sftp_option.TransferMode = TransferMode.Binary;
             Device_List_Refresh_Timer.Enabled = true;
@@ -355,7 +350,7 @@ namespace PiCamClient
                 test_flag = false;
                 Player_1.settings.mute = false;
                 Player_1.settings.setMode("loop", true);
-                Player_1.URL = @"C:\PiCam\records\last_preview.ts";
+                if(File.Exists(@"C:\PiCam\records\last_preview.ts"))  Player_1.URL = @"C:\PiCam\records\last_preview.ts";
                 Player_1.Ctlcontrols.play();
                 Media_Player_Timer.Enabled = true;
             }
@@ -662,7 +657,6 @@ namespace PiCamClient
                             MessageBox.Show("The footages selected are not able to be synced due to time difference.", "Sync Error", MessageBoxButtons.OK);
                         }
                     }
-                    //MessageBox.Show(Player_1.currentMedia.duration.ToString());
                 }
                 else  // if date unmatched
                 {

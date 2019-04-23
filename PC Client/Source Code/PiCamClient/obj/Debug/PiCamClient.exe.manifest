@@ -62,19 +62,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gGGRR16BHBujURbPk5KDHgD8Un5cEjNSHieUEU7Wu/k=</dsig:DigestValue>
+        <dsig:DigestValue>ixTSPS/2np29OO/pA+qrA8KmKa0NzhC9p+O0aSqYFqQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PiCamClient.exe" size="934840">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PiCamClient.exe" size="810424">
       <assemblyIdentity name="PiCamClient" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1Sn6QAKL3JPz8qg3rKPYZcYr4qrgF0qej1HFl8HVqrA=</dsig:DigestValue>
+        <dsig:DigestValue>jOg5G6vZaI2eDhtq8tI6DOFwuKU4fRT2KmeTcFV9NJU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
