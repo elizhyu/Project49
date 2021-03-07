@@ -2,10 +2,10 @@
 
 Purdue Senior Design - Wearable headset  
 
-git clone https://github.com/jpats523/Project49.git  
+git clone https://github.com/elizhyu/Project49.git  
 
 How to set everything up  
-1)git clone https://github.com/jpats523/Project49.git  
+1)git clone https://github.com/elizhyu/Project49.git  
 2)cd Project49  
 3)cd Scripts  
 4)chmod +x Project49Installer.sh  
